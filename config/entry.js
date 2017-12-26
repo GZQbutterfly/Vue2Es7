@@ -14,7 +14,7 @@ function getEntry(globPath) {
         tmp.pop();
         pathname = tmp.join('/') + '/' + basename;
         jsMap[pathname] = entry;//path.join(__dirname, '.'+ entry); //path.join(__dirname, '../dist/'+ pathname + '.js');
-        htmlMap[pathname] = path.join(__dirname, '../dist/'+ pathname + '.html');
+        htmlMap[pathname] = path.resolve(__dirname, '../dist/'+ pathname + '.html');
     });
 
     return {

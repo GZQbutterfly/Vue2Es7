@@ -2,7 +2,7 @@
 let webpack = require('webpack'),
     path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    //ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
     baseConfig = require('./webpack.base.config'),
     entry = require('./entry');
 
@@ -13,8 +13,10 @@ let cmsEntries = entry.getEntry('./src/page/cms/*/index.js');
 baseConfig.entry = {
     ...webEntries.jsMap,
     ...cmsEntries.jsMap,
+    'main': [path.resolve(__dirname, '../src/page/main/main')],
     'vue': ['vue' , 'vue-property-decorator', 'vue-class-component']
 };
+//'babel-polyfill',
 
 // 文件映射
 baseConfig.devtool = 'source-map';
@@ -28,7 +30,7 @@ for (let key in pages) {
     let pathname = pages[key];
     let conf = {
         filename: pathname,
-        template: path.join(__dirname, '../src/page/index.tpl.html'),
+        template: path.resolve(__dirname, '../src/page/index.tpl.html'),
         minify: {
             removeComments: true
         },
@@ -50,11 +52,11 @@ baseConfig.plugins.push(
         name: ['vue'],
         minChunks: Infinity
     }),
-    // new ExtractTextPlugin({
-    //     filename: '[name].css',
-    //     disable: false,
-    //     allChunks: true,
-    // }),
+    new ExtractTextPlugin({
+        filename: '[name].css',
+        disable: false,
+        allChunks: true,
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('development')

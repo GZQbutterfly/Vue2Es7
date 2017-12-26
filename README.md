@@ -22,12 +22,17 @@
 - cnpm install  webpack-merge                                 --save-dev
 - cnpm install  clean-webpack-plugin                          --save-dev
 - cnpm install  html-webpack-plugin                           --save-dev
-
+  cnpm install  extract-text-webpack-plugin                   --save-dev
 
 ###babel
 cnpm install  babel-preset-env                              --save-dev
 cnpm install  babel-loader babel-core                       --save-dev
 cnpm install  babel-cli                                     --save-dev
+cnpm install  babel-polyfill --save
+cnpm install  babel-runtime --save
+cnpm install  babel-plugin-transform-runtime                 --save-dev
+cnpm install  babel-plugin-transform-decorators-legacy       --save-dev
+cnpm install  babel-plugin-transform-decorators              --save-dev
 
 ###loader
 cnpm install  raw-loader css-loader  style-loader           --save-dev
@@ -78,7 +83,7 @@ cnpm install  clipboard-polyfill                             --save
 cnpm install  axios                                          --save
 cnpm install  @types/lodash                                  --save
 cnpm install  qs                                             --save
-cnpm install es6-promise                                     --save-dev
+cnpm install  es6-promise                                     --save-dev
 cnpm install  node-glob
 
 ###gulp

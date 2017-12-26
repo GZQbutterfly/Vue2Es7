@@ -3,6 +3,11 @@ let webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./build.js');
 
+
+
+let pathname = '127.0.0.1',//'qaservice.365bencao.cn',
+    port = 30001;//80;
+
 // ==>
 new WebpackDevServer(webpack(config), {
     contentBase: '../dist',
@@ -21,10 +26,10 @@ new WebpackDevServer(webpack(config), {
         chunks: false,
         chunkModules: false
     }
-}).listen(80, 'qaservice.365bencao.cn', function(err) {
+}).listen(port, pathname, function(err) {
     if (err) {
         console.error(err);
     } else {
-        console.log('Listening at http://qaservice.365bencao.cn');
+        console.log(`Listening at http://${pathname}:${port}`);
     }
 });
