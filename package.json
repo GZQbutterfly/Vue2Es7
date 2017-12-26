@@ -9,7 +9,7 @@
     "build": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors",
     "dev": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors --display-reasons",
     "prod": "set NODE_ENV=development && webpack --config ./build/build.js --progress  --colors",
-    "server": "node ./build/dev.server.js",
+    "server": "node ./build/dev.server.js"
   },
   "repository": {
     "type": "git",
