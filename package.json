@@ -1,0 +1,41 @@
+{
+  "name": "es7",
+  "version": "1.0.0",
+  "description": "vue2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "entry": " node ./config/entry.js",
+    "build": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors",
+    "dev": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors --display-reasons",
+    "prod": "set NODE_ENV=development && webpack --config ./build/build.js --progress  --colors",
+    "server": "node ./build/dev.server.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GZQbutterfly/Vue2Es7.git"
+  },
+  "author": "gzq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GZQbutterfly/Vue2Es7/issues"
+  },
+  "homepage": "https://github.com/GZQbutterfly/Vue2Es7#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "html-webpack-plugin": "^2.30.1",
+    "node-glob": "^1.2.0",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "dependencies": {
+    "vue": "^2.5.13",
+    "vue-class-component": "^6.1.2",
+    "vue-property-decorator": "^6.0.0",
+    "vue-router": "^3.0.1"
+  }
+}
