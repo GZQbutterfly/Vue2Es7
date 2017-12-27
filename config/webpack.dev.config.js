@@ -13,7 +13,8 @@ let webpack = require('webpack'),
 baseConfig.entry = {
     // ...webEntries.jsMap,
     // ...cmsEntries.jsMap,
-    'main': [path.resolve(__dirname, '../src/page/app/index.js')],
+    'web/main': [path.resolve(__dirname, '../src/page/web/index.js')],
+    'cms/main': [path.resolve(__dirname, '../src/page/cms/index.js')],
     'vue': ['vue' , 'vue-property-decorator', 'vue-class-component']
 };
 //'babel-polyfill',
@@ -43,13 +44,21 @@ baseConfig.devtool = 'source-map';
 
 baseConfig.plugins.push(
     new HtmlWebpackPlugin({
-        //filename: pathname,
-        template: path.resolve(__dirname, '../src/page/index.tpl.html'),
+        template: path.resolve(__dirname, '../src/page/web/index.tpl.html'),
         minify: {
             removeComments: true
         },
         inject: 'body',
-        chunks: ['vue', 'main']
+        chunks: ['vue', 'web/main']
+    }),
+    new HtmlWebpackPlugin({
+        filename: path.resolve(__dirname, '../dist/cms/index.html'),
+        template: path.resolve(__dirname, '../src/page/cms/index.tpl.html'),
+        minify: {
+            removeComments: true
+        },
+        inject: 'body',
+        chunks: ['vue', 'cms/main']
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: ['vue'],

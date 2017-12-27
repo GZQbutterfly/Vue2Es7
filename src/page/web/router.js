@@ -18,7 +18,7 @@ const routes = [
         component: (resolve) => {
             require.ensure([], require => {
                 resolve(require('./home/home.js')['HomePage']);
-            }, 'home');
+            }, 'web/home');
         }
     }
 ];

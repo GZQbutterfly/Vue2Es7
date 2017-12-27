@@ -11,5 +11,6 @@ import './home.scss';
 export class HomePage {
     mounted(){
         console.log('HomePage');
+        
     }
 }
