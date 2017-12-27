@@ -42,11 +42,15 @@ module.exports = {
             'vue$': path.resolve(__dirname, '../node_modules/vue/dist/vue.esm.js')
         }
     },
-    plugins: [
-        // new CopyWebpackPlugin([{
+    plugins: [// new CopyWebpackPlugin([{
         //     from: path.join(__dirname, '../src/static'),
         //     to: path.join(__dirname, '../dist/static')
         // }]),
-        //new CleanWebpackPlugin(path.join(__dirname, '../dist/*'))
-    ]
+        // new CleanWebpackPlugin([
+        //     '../dist/**/*.*', 'dist/manifest.*.js'
+        // ], { //匹配删除的文件
+        //     root: __dirname, //根目录
+        //     verbose: true, //开启在控制台输出信息
+        //     dry: true //启用删除文件
+        // })]
 };

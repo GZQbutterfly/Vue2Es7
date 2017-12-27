@@ -7,13 +7,13 @@ let webpack = require('webpack'),
     entry = require('./entry');
 
 
-let webEntries = entry.getEntry('./src/page/app/*/index.js');
-let cmsEntries = entry.getEntry('./src/page/cms/*/index.js');
+// let webEntries = entry.getEntry('./src/page/app/*/index.js');
+// let cmsEntries = entry.getEntry('./src/page/cms/*/index.js');
 
 baseConfig.entry = {
-    ...webEntries.jsMap,
-    ...cmsEntries.jsMap,
-    'main': [path.resolve(__dirname, '../src/page/main/main')],
+    // ...webEntries.jsMap,
+    // ...cmsEntries.jsMap,
+    'main': [path.resolve(__dirname, '../src/page/app/index.js')],
     'vue': ['vue' , 'vue-property-decorator', 'vue-class-component']
 };
 //'babel-polyfill',
@@ -21,33 +21,36 @@ baseConfig.entry = {
 // 文件映射
 baseConfig.devtool = 'source-map';
 
+//
+// let appPages = webEntries.htmlMap;
+// let cmsPages = cmsEntries.htmlMap;
 
-let appPages = webEntries.htmlMap;
-let cmsPages = cmsEntries.htmlMap;
+// let pages = {...appPages, ...cmsPages}
+// for (let key in pages) {
+//     let pathname = pages[key];
+//     let conf = {
+//         filename: pathname,
+//         template: path.resolve(__dirname, '../src/page/index.tpl.html'),
+//         minify: {
+//             removeComments: true
+//         },
+//         inject: 'body',
+//         chunks: ['vue', key]
+//     };
+//     // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
+//     baseConfig.plugins.push(new HtmlWebpackPlugin(conf));
+// }
 
-let pages = {...appPages, ...cmsPages}
-for (let key in pages) {
-    let pathname = pages[key];
-    let conf = {
-        filename: pathname,
+baseConfig.plugins.push(
+    new HtmlWebpackPlugin({
+        //filename: pathname,
         template: path.resolve(__dirname, '../src/page/index.tpl.html'),
         minify: {
             removeComments: true
         },
         inject: 'body',
-        chunks: ['vue', key]
-    };
-    // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
-    baseConfig.plugins.push(new HtmlWebpackPlugin(conf));
-}
-
-baseConfig.plugins.push(
-    // new HtmlWebpackPlugin({
-    //
-    // }),
-    // new HtmlWebpackPlugin({
-    //
-    // }),
+        chunks: ['vue', 'main']
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         name: ['vue'],
         minChunks: Infinity

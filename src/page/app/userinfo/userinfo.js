@@ -9,5 +9,8 @@ import './userinfo.scss';
     template: userinfoHTML
 })
 export class UserInfoPage {
+    mounted(){
+        console.log('UserInfoPage')
+    }
 
 }

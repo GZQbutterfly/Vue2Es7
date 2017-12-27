@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "entry": " node ./config/entry.js",
-    "build": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors",
+    "build": "set NODE_ENV=development && webpack --config ./build/build.js --progress --colors",
     "dev": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors --display-reasons",
     "prod": "set NODE_ENV=development && webpack --config ./build/build.js --progress  --colors",
     "server": "set NODE_ENV=development && node ./build/dev.server.js"
