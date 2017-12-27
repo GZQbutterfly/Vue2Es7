@@ -37,7 +37,7 @@
 
 ###loader
  cnpm install  raw-loader css-loader  style-loader           --save-dev
- cnpm install  file-loader vue-loader                        --save-dev
+ cnpm install  file-loader                        --save-dev
  cnpm install  sass sass-loader node-sass                    --save-dev
  cnpm install  postcss-px2rem  postcss-loader autoprefixer   --save-dev
 
@@ -60,7 +60,7 @@
  cnpm install  vue-class-component                           --save
  cnpm install  vue-template-compiler                         --save-dev
  cnpm install  vue-typescript                                --save-dev
-
+ cnpm insatll  vue-loader                                    --save-dev
 ###vue-plugins
  cnpm install  vue-form                                       --save
  cnpm install  vue-ydui                                       --save

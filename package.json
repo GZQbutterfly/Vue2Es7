@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "entry": " node ./config/entry.js",
-    "build": "set NODE_ENV=development && webpack --config ./build/build.js --progress --colors",
+    "build": "set NODE_ENV=development && webpack --config ./build/build.js",
     "dev": "set NODE_ENV=development && webpack --config ./build/build.js --progress --display-modules --colors --display-reasons",
     "prod": "set NODE_ENV=development && webpack --config ./build/build.js --progress  --colors",
-    "server": "set NODE_ENV=development && node ./build/dev.server.js"
+    "server": "set NODE_ENV=development && node ./build/dev.server.js",
+    "dll": "webpack --config ./config/webpack.dll.config.js"
   },
   "repository": {
     "type": "git",

@@ -15,7 +15,7 @@ baseConfig.entry = {
     // ...cmsEntries.jsMap,
     'web/main': [path.resolve(__dirname, '../src/page/web/index.js')],
     'cms/main': [path.resolve(__dirname, '../src/page/cms/index.js')],
-    'vue': ['vue' , 'vue-property-decorator', 'vue-class-component']
+    'static/lib/vue-mode': ['vue' , 'vue-property-decorator', 'vue-class-component']
 };
 //'babel-polyfill',
 
@@ -43,13 +43,18 @@ baseConfig.devtool = 'source-map';
 // }
 
 baseConfig.plugins.push(
+    // new webpack.DllReferencePlugin({
+    //     context: __dirname,
+    //     manifest: require('../dist/vendor-manifest.json')
+    // }),
     new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../src/page/web/index.tpl.html'),
         minify: {
             removeComments: true
         },
+        favicon: path.resolve(__dirname, '../src/page/favicon.ico'),
         inject: 'body',
-        chunks: ['vue', 'web/main']
+        chunks: ['static/lib/vue-mode', 'web/main']
     }),
     new HtmlWebpackPlugin({
         filename: path.resolve(__dirname, '../dist/cms/index.html'),
@@ -57,11 +62,12 @@ baseConfig.plugins.push(
         minify: {
             removeComments: true
         },
+        favicon: path.resolve(__dirname, '../src/page/favicon.ico'),
         inject: 'body',
-        chunks: ['vue', 'cms/main']
+        chunks: ['static/lib/vue-mode', 'cms/main']
     }),
     new webpack.optimize.CommonsChunkPlugin({
-        name: ['vue'],
+        name: ['static/lib/vue-mode'],
         minChunks: Infinity
     }),
     new ExtractTextPlugin({
