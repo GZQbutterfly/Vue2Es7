@@ -14,5 +14,5 @@
             }
         ]
     ],
-    "plugins": ["transform-runtime", "transform-decorators-legacy", "transform-decorators"]
+    "plugins": [ "transform-decorators-legacy", "transform-decorators",  "add-module-exports", "transform-runtime"]
 }

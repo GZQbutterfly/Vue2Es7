@@ -27,12 +27,13 @@
 ###babel
 cnpm install  babel-preset-env                              --save-dev
 cnpm install  babel-loader babel-core                       --save-dev
-cnpm install  babel-cli                                     --save-dev
+cnpm install  babel-node                                     --save-dev
 cnpm install  babel-polyfill --save
 cnpm install  babel-runtime --save
 cnpm install  babel-plugin-transform-runtime                 --save-dev
 cnpm install  babel-plugin-transform-decorators-legacy       --save-dev
 cnpm install  babel-plugin-transform-decorators              --save-dev
+cnpm install  babel-plugin-add-module-exports                --save-dev
 
 ###loader
 cnpm install  raw-loader css-loader  style-loader           --save-dev
