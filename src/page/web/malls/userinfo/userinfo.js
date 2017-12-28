@@ -13,30 +13,28 @@ import './userinfo.scss';
     template: require('./userinfo.html')
 })
 export class UserInfo extends BaseVue {
+    user_img = '/static/images/pic-nologin.png';
+    userInfo =  {};
+    userScore =  {};
+    userLogin =  false;
+    orderList = [];
+    pointData =   [];
 
+    hasShop =  false
+    userMsgNum = 0;
+    //查询是否有点失败 隐藏入口
+    hasShopError= true;
+    _$service;
     data(){
         return {
-            userInfo:  {},
-            userScore:  {},
-            userLogin:  false,
-            orderList:  [],
-            pointData:   [],
-            user_img: '/static/images/pic-nologin.png',
-            hasShop:   false,
-            userMsgNum:  0,
-            //查询是否有点失败 隐藏入口
-            hasShopError: true
+
         }
     }
-
     // private _shopCarCount;
     mounted() {
         //注册服务
-
         this._$service = userInfoService(this.$store);
-
         let _self = this;
-
         this.$nextTick(() => {
             // 这里面是dom加载完成后的
             this.orderList = this._$service.getOrderListInfo();

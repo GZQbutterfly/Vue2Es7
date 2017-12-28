@@ -1,7 +1,6 @@
-import Vue from 'vue';
 import Vuex from 'vuex';
-Vue.use(Vuex);
-//import axios from 'axios';
+
+import {http} from 'common.env';
 
 //import vuexI18n from 'vuex-i18n/dist/vuex-i18n.es';
 //import i18n from '../store/i18n';
@@ -22,7 +21,7 @@ const store = new Vuex.Store({
         // $info: info,
         // $loadding: loadding,
         // $toast: toast,
-        // $http: axios,
+        $http: http(),
         // $popup: popup,
         workVO: {
             env: process.env.NODE_ENV,

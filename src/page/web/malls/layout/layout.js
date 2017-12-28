@@ -13,11 +13,12 @@ import './layout.scss';
     template: require('./layout.html')
 })
 export class Layout extends Vue {
+    list = [];
+    isCreatedMenu = true;
 
     data() {
         return {
-            list: [],
-            isCreatedMenu: true,
+
             activeName: this.$route.name
         };
     }
@@ -52,13 +53,12 @@ export class Layout extends Vue {
             this.refreshServer(this);
         }
     }
-
-    get refreshServer(){
-        return debounce((_self)=>{
+    
+    refreshServer = debounce((_self)=>{
             _self.$nextTick(() => {
                 // 请求购物车 商品数量
                 //shopCarGoodsService(this.$store).getShopcarGoodsesList();
             });
-        }, 500);
-    }
+    }, 500);
+
 }

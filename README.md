@@ -34,7 +34,7 @@
  cnpm install  babel-plugin-transform-decorators-legacy       --save-dev
  cnpm install  babel-plugin-transform-decorators              --save-dev
  cnpm install  babel-plugin-add-module-exports                --save-dev
-
+ cnpm install --save-dev babel-plugin-transform-class-properties
 ###loader
  cnpm install  raw-loader css-loader  style-loader           --save-dev
  cnpm install  file-loader                        --save-dev
@@ -47,9 +47,6 @@
 
 
 
-###typescript
- cnpm install  @types/core-js ts-loader typescript           --save-dev
- cnpm install  core-js                                       --save-dev
 
 
 ###vue
@@ -79,10 +76,9 @@
  cnpm install  weixin-js-sdk                                  --save
 
 ###other
- cnpm install  swiper                                         --save
+ ..cnpm install  swiper                                         --save
  cnpm install  clipboard-polyfill                             --save
  cnpm install  axios                                          --save
- cnpm install  @types/lodash                                  --save
  cnpm install  qs                                             --save
  cnpm install  es6-promise                                     --save-dev
  cnpm install  node-glob

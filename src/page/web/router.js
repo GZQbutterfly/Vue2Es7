@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
 
-
+import loginRoutes from './login/login.routes';
 import mallsRoutes from './malls/malls.routes';
 
 const routes = [
@@ -8,6 +8,7 @@ const routes = [
         path: '/',
         redirect: {name: 'layout'}
     },
+    ...loginRoutes,
     ...mallsRoutes,
 ];
 

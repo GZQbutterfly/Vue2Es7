@@ -10,33 +10,33 @@ import './shop_car.scss';
 
 @Component({template: require('./shop_car.html')})
 export class ShopCar extends BaseVue {
+    // 组件方法也可以直接声明为实例的方法
+    validLists = []; //购物车列表
+    invalidLists = []; //失效列表
+    total = 0; //合计
+    //最小消费额
+    minimumConsumption = -1;
+    totalPrice = 0; //总额
+    settlement = 0; //结算个数
+    checkAll = false;//全选
+    isEdit = true; //编辑状态
+    edit ='编辑';
+    isEmpty = false; //购物车为空
+    isShow = false; //失效物品区域显示
+    // wxShopCheck: boolean = false;//店铺全选
+    recommendShow = true;
+    recommendLists  = [];
+    page = 1;
+    flag = false;
+    headImg = '/static/newshop/images/pic-nologin.png';
+    isLimit = false; //false受限制
+    qflag = true;
 
     data() {
         return {
-            // 组件方法也可以直接声明为实例的方法
-            validLists: [], //购物车列表
-            invalidLists: [], //失效列表
-            total: 0, //合计
-            //最小消费额
-            minimumConsumption: -1,
-            totalPrice: 0, //总额
-            settlement: 0, //结算个数
-            checkAll: false, //全选
-            isEdit: true, //编辑状态
-            edit: '编辑',
-            isEmpty: false, //购物车为空
-            isShow: false, //失效物品区域显示
-            // wxShopCheck: boolean = false;//店铺全选
-            recommendShow: true,
-            recommendLists: [],
-            page: 1,
-            flag: false,
-            headImg: '/static/newshop/images/pic-nologin.png',
-            isLimit: false, //false受限制
-            qflag: true
+
         };
     }
-    created() {}
     mounted() {
         // 注册服务
         this._$service = shopCarService(this.$store);
@@ -86,7 +86,6 @@ export class ShopCar extends BaseVue {
                         _this.toast(res.data.msg, false);
                         return;
                     }
-                    console.log(res);
                     //获取商品列表
                     _this._$service.getShopcarGoodsesList(1).then((res ) => { //未测试
                         if (res.data.errorCode) {

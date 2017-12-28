@@ -62,36 +62,6 @@ export function getZoneData(_item) {
 }
 
 
-let baseURL = 'http://qa.365bencao.cn/malls/';
-
-if ( location.origin.indexOf('xhjx.') != -1) {
-    baseURL = 'http://xhjxcms.365bencao.com/malls/';
-}else if(location.origin.indexOf('qaservice.') != -1){
-    baseURL = 'http://qa.365bencao.cn/malls/';
-}else {
-    baseURL = 'http://qa.365bencao.cn/malls/';
-}
-
-
-export { baseURL };
-
-/**
- * axios请求设置
- * @param axios
- */
-export function axiosConfig(axios) {
-    /*
-     *  1.超时处理
-     *  2.post设置
-     *  3.开发环境与正式环境的区别
-     */
-    axios.defaults.timeout = 5000;
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-    axios.defaults.baseURL = baseURL;
-    //axios.defaults.transformRequest = (data)=>{ console.log('transformRequest', data); return data;};
-    return Promise.resolve(true);
-}
-
 /**
  * timeout
  * @param fn

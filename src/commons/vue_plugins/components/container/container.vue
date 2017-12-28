@@ -10,23 +10,7 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-.app-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    user-select: none;
-    &__bd {
-        width: 100%;
-        min-height:100%;
-        transform-origin: left top;
-        transform: translateZ(0);
-    }
-}
-</style>
+
 
 <script>
 import Scroller from '../../../assets/scroller/core';
@@ -135,3 +119,22 @@ export default {
     }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.app-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    user-select: none;
+    &__bd {
+        width: 100%;
+        min-height:100%;
+        transform-origin: left top;
+        transform: translateZ(0);
+    }
+}
+</style>

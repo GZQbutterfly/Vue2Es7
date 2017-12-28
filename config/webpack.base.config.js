@@ -51,7 +51,8 @@ module.exports = {
         alias: {
             'vue$': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js'),
             'common.env$': path.join(__dirname, '../src/commons/env/common.env.js'),
-            'base.vue$': path.join(__dirname, '../src/commons/env/base_vue/base.vue.js')
+            'base.vue$': path.join(__dirname, '../src/commons/env/base_vue/base.vue.js'),
+            'swiper$': path.join(__dirname, '../src/commons/assets/swiper/swiper.js')
         }
     },
     plugins: [

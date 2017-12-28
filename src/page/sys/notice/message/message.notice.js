@@ -1,20 +1,26 @@
 // 消息通知组件
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import { timeout, isCMS, isWEP } from '../../../../commons/env_common/common.env';
+import { timeout, isCMS, isWEP } from 'common.env';
 import { find } from 'lodash';
+
+
 
 import service from './message.notice.service';
 import './message.notice.scss';
+
 // ==>
 @Component({
     template: require('./message.notice.html')
 })
 export class MessageNotice extends Vue {
-    list = [];
-    page = 0;
-    private _isCMS;
-    private _$service;
+    list= [];
+    page= 0;
+    data(){
+        return {
+
+        };
+    }
     mounted() {
         this._$service = service(this.$store);
         this._isCMS = isCMS();
@@ -25,7 +31,7 @@ export class MessageNotice extends Vue {
         })
     }
     queryMessage(page = this.page) {
-        let _result: any = null;
+        let _result = null;
         let _pageData = {
             page: page,
             limit: 10
@@ -94,7 +100,7 @@ export class MessageNotice extends Vue {
         // 去订单详情
         let _toPath = 'order_detail';
         let _serverAttr = 'updOrderMessageStatus';
-        let _param: any = { usermsgId: item.usermsgId };
+        let _param = { usermsgId: item.usermsgId };
         if (this._isCMS) {
             _toPath = 'cmsOutOrderDetail';
             _serverAttr = 'updCMSOrderMessageStatus';

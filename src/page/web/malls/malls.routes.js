@@ -1,7 +1,4 @@
 
-//import {HomePage} from './home/home.js';
-//import {UserInfoPage} from './userinfo/userinfo';
-
 const routes = [
     {
         path: '/layout',
@@ -11,7 +8,7 @@ const routes = [
                 resolve(require('./layout/layout')['Layout']);
             }, 'web/malls/malls');
         },
-        redirect: {name: 'home'},
+        redirect: {name: 'userinfo'},
         children: [
             // 首页
             {

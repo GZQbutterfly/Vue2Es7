@@ -1,22 +1,23 @@
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { timeout } from '../../../../commons/env_common/common.env';
-import { merge } from 'lodash';
+import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
+import {timeout} from 'common.env';
+import {merge} from 'lodash';
 
 import './top.notice.scss';
-@Component({
-    template: require('./top.notice.html')
-})
+@Component({template: require('./top.notice.html')})
 export class TopNotice extends Vue {
-    @Prop()
-    msgOpts: Object;
 
-    msgConfig = { list: [], delay: 3000, speed: 0 }
+    @Prop({type:Object, default:{}})
+    msgOpts;
+    msgConfig = {list: [] ,delay: 3000, speed: 0};
     msgList = [];
-    msgObj = { img: '/static/images/pic-login.png', msg: '', flag: '' };
-
+    msgObj = {img: '/static/images/pic-login.png', msg: '', flag: ''};
     show = false;
     showAnimation = false;
     stopRunFlag = false;
+
+    data() {
+        return {}
+    }
 
     mounted() {
         this.$nextTick(() => {
@@ -25,7 +26,7 @@ export class TopNotice extends Vue {
     }
 
     initPage() {
-        let _self: any = this;
+        let _self = this;
         merge(_self.msgConfig, _self.msgOpts);
         _self.msgList = _self.msgConfig.list;
         _self.stopRunFlag = true;
@@ -35,7 +36,7 @@ export class TopNotice extends Vue {
         }, _self.msgConfig.delay);
     }
 
-    @Watch('msgOpts.list', { immediate: false })
+    @Watch('msgOpts.list', {immediate: false})
     watchMsg(newVal, oldVal) {
         this.msgList.push(...newVal);
         if (!this.stopRunFlag) {
@@ -65,10 +66,10 @@ export class TopNotice extends Vue {
 
     runAnimation() {
         return new Promise((resolve) => {
-            let _self: any = this;
-            let _boxRefDom: any = _self.$refs.boxRef;
+            let _self = this;
+            let _boxRefDom = _self.$refs.boxRef;
             let _bw = _boxRefDom.clientWidth;
-            let _contentDom: any = _self.$refs.msgRef;
+            let _contentDom = _self.$refs.msgRef;
             let contentWidth = _contentDom.getBoundingClientRect().width;
             if (contentWidth < _bw + 2) {
                 timeout(() => {
