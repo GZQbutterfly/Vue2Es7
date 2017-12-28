@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
-
+import { debounce } from 'lodash';
 
 // ===>
 import homeHTML from './home.html';
@@ -10,7 +10,7 @@ import './home.scss';
 })
 export class HomePage {
     mounted(){
-        console.log('cms HomePage');
+        console.log('cms HomePage', debounce);
 
     }
 }

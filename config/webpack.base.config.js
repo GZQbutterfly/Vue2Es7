@@ -2,13 +2,14 @@
 let webpack = require('webpack'),
     path = require('path'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    //CopyWebpackPlugin = require('copy-webpack-plugin');
+    CopyWebpackPlugin = require('copy-webpack-plugin'),
     CleanWebpackPlugin = require('clean-webpack-plugin');
+
 
 // ==>
 module.exports = {
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.join(__dirname, '../dist'),
         filename: '[name].js',
         chunkFilename: '[name].js'
     },
@@ -17,30 +18,30 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: 'vue-loader',
-                include: [path.resolve(__dirname, '../src/commons')],
+                include: [path.join(__dirname, '../src/commons')],
                 exclude: /node_modules/
             }, {
                 test: /\.js$/,
                 use: ['babel-loader'],
-                include: [path.resolve(__dirname, '../src/page')],
+                include: [path.join(__dirname, '../src/page'), path.join(__dirname, '../src/commons/env/base_vue')],
                 exclude: /node_modules/
             }, {
                 test: /\.(html|htm)$/,
                 use: 'raw-loader',
                 exclude: /node_modules/
-            }, {
+            },
+            {
                 test: /\.(scss|css)$/,
                 use: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader', 'postcss-loader', 'sass-loader'
-                    ],
+                    use: ['css-loader', 'postcss-loader', 'sass-loader'],
                     fallback: 'style-loader'
                 }),
                 exclude: /node_modules/
-            }, {
+            },
+            {
                 test: /\.(png|svg|jpg|gif|eot|woff)$/,
                 use: ['url-loader?limit=8192&name=static/images/build/[name].[hash:8].[ext]'],
-                include: [path.resolve(__dirname, '../src/page')],
+                include: [path.join(__dirname, '../src/page')],
                 exclude: /node_modules/
             }
         ]
@@ -48,13 +49,18 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            'vue$': path.resolve(__dirname, '../node_modules/vue/dist/vue.esm.js')
+            'vue$': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js'),
+            'common.env$': path.join(__dirname, '../src/commons/env/common.env.js'),
+            'base.vue$': path.join(__dirname, '../src/commons/env/base_vue/base.vue.js')
         }
     },
-    plugins: [ // new CopyWebpackPlugin([{
-        //     from: path.join(__dirname, '../src/static'),
-        //     to: path.join(__dirname, '../dist/static')
-        // }]),
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: path.join(__dirname, '../src/static'),
+                to: path.join(__dirname, '../dist/static')
+            }
+        ])
         // new CleanWebpackPlugin([
         //     '../dist/**/*.*', 'dist/manifest.*.js'
         // ], { 匹配删除的文件

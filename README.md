@@ -22,8 +22,8 @@
 - cnpm install  webpack-merge                                 --save-dev
 - cnpm install  clean-webpack-plugin                          --save-dev
 - cnpm install  html-webpack-plugin                           --save-dev
-  cnpm install  extract-text-webpack-plugin                   --save-dev
-
+   cnpm install  extract-text-webpack-plugin                   --save-dev
+   cnpm install  copy-webpack-plugin                           --save-dev
 ###babel
  cnpm install  babel-preset-env                              --save-dev
  cnpm install  babel-loader babel-core                       --save-dev
