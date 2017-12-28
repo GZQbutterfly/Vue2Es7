@@ -43,9 +43,8 @@
 
  cnpm install  url-loader                                    --save-dev
  cnpm install  css-loader                                    --save-dev
- cnpm install  @types/node                                   --save-dev
-
-
+ cnpm install eslint --save-dev
+ cnpm install eslint-loader --save-dev
 
 
 
