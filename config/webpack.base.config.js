@@ -61,13 +61,14 @@ module.exports = {
                 from: path.join(__dirname, '../src/static'),
                 to: path.join(__dirname, '../dist/static')
             }
-        ])
-        // new CleanWebpackPlugin([
-        //     '../dist/**/*.*', 'dist/manifest.*.js'
-        // ], { 匹配删除的文件
-        //     root: __dirname, 根目录
-        //     verbose: true, 开启在控制台输出信息
-        //     dry: true 启用删除文件
-        // })
+        ]),
+        new CleanWebpackPlugin(['../dist'],
+            {
+                root: __dirname,
+                verbose: true,
+                dry: false,
+                allowExternal: true
+            }
+        )
     ]
 };

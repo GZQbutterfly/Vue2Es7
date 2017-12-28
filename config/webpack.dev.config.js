@@ -5,13 +5,13 @@ let webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     baseConfig = require('./webpack.base.config');
 
-baseConfig.module.rules.unshift({
-    enforce: 'pre',
-    test: /\.js$/,
-    use: 'eslint-loader',
-    exclude: /node_modules/,
-    include: [path.join(__dirname, '../src/page')]
-})
+// baseConfig.module.rules.unshift({
+//     enforce: 'pre',
+//     test: /\.js$/,
+//     use: 'eslint-loader',
+//     exclude: /node_modules/,
+//     include: [path.join(__dirname, '../src/page')]
+// })
 
 
 
