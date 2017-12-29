@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
 
-import loginRoutes from './login/login.routes';
+import loginRoutes from '../sys/login/login.routes';
 import mallsRoutes from './malls/malls.routes';
 
 const routes = [
