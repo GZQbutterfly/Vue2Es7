@@ -665,8 +665,8 @@ export class ShopCar extends BaseVue {
                 assistFn() {},
                 mainFn() {
                     toLogin(_this.$router, {
-                        toPath: 'shoppcar',
-                        realTo: 'shoppcar'
+                        toPath: 'shop_car',
+                        realTo: 'shop_car'
                     });
                 }
             };

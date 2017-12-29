@@ -38,6 +38,37 @@ const routes = [
                 resolve(require('./protocol/protocol')['Protocol']);
             }, 'sys/system');
         }
+    },
+    //开店
+    // 宣传信息
+    {
+        path: '/applyShopCampaign',
+        name: 'applyShopCampaign',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./apply/campaign/campaign')['ApplyShopCampaign']);
+            }, 'sys/system');
+        }
+    },
+    // 邀请码
+    {
+        path: '/applyShopInvitecode',
+        name: 'applyShopInvitecode',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./apply/invitecode/invitecode')['ApplyShopInvitecode']);
+            }, 'sys/system');
+        }
+    },
+    // 申请开店
+    {
+        path: '/applyShop',
+        name: 'applyShop',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./apply/shop/shop')['ApplyShop']);
+            }, 'sys/system');
+        }
     }
 ];
 

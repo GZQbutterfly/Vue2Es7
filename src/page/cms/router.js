@@ -1,25 +1,18 @@
 import VueRouter from 'vue-router';
-// ==>
-import {UserInfoPage} from './userinfo/userinfo';
-
 
 // ==>
 const routes = [
     {
         path: '/',
         redirect: {
-            name: 'userinfo'
+            name: 'cms_home'
         }
     }, {
-        path: '/userinfo',
-        name: 'userinfo',
-        component: (resolve) => resolve(UserInfoPage)
-    }, {
-        path: '/home',
-        name: 'home',
+        path: '/cms_home',
+        name: 'cms_home',
         component: (resolve) => {
             require.ensure([], require => {
-                resolve(require('./home/home.js')['HomePage']);
+                resolve(require('./home/home.js')['CmsHome']);
             }, `cms/home`);
         }
     }

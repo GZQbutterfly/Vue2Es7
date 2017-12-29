@@ -1,8 +1,9 @@
 import { wxAppid } from '../common.env';
 import wx from 'weixin-js-sdk';
-import shareConfig from './share.config';
+import ShareConfig from './share.config';
 
 export function wxshare(config, key) {
+    let shareConfig = ShareConfig();
 
     wx.error(function (res) {
         console.log(res);

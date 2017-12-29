@@ -40,7 +40,7 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif|eot|woff)$/,
                 use: ['url-loader?limit=8192&name=static/images/build/[name].[hash:8].[ext]'],
-                include: [path.join(__dirname, '../src/page')],
+                //include: [path.join(__dirname, '../src/page')],
                 exclude: /node_modules/
             }
         ]
