@@ -7,7 +7,7 @@ import baseService from './base.vue.service';
 @Component({
     template: require('./base.vue.html'),
 })
-export class BaseVue extends Vue {
+export default class BaseVue extends Vue {
 
 
     //config 默认 显示分享菜单  不可更改

@@ -14,7 +14,6 @@ const routes = [
             {
                 path: '/home',
                 name: 'home',
-                title: '微商城',
                 meta: {
                     keepAlive: true
                 },
@@ -24,10 +23,23 @@ const routes = [
                     }, 'web/malls/malls');
                 }
             },
+            // 分类
+            {
+                path: '/classify',
+                name: 'classify',
+                meta: {
+                    keepAlive: true
+                },
+                component: resolve => {
+                    require.ensure([], require => {
+                        resolve(require('./classify/classify')['Classify']);
+                    }, 'web/malls/malls');
+                }
+            },
             // 购物车
            {
-               path: '/shoppcar',
-               name: 'shoppcar',
+               path: '/shop_car',
+               name: 'shop_car',
                meta: { keepAlive: true },
                component: resolve => {
                    require.ensure([], require => {
@@ -46,8 +58,39 @@ const routes = [
                    }, 'web/malls/malls');
                }
            },
+           // 商品详情
+            {
+                path: '/goods_detail',
+                name: 'goods_detail',
+                meta: {noMenu: 1},
+                component: resolve => {
+                    require.ensure([], require => {
+                        resolve(require('./goods/goods.detail')['GoodsDetail']);
+                    }, 'web/malls/goods');
+                }
+            },
+            // 搜索、首页、分类的公共商品列表组件
+           {
+               path: '/goodsList',
+               name: 'goodsList',
+               component: resolve => {
+                   require.ensure([], require => {
+                       resolve(require('./goods_list/goods_list')['GoodsList']);
+                   }, 'web/malls/goods');
+               }
+           }
         ]
-    }
+    },
+    // 地址
+    {
+        path: '/userAddress',
+        name: 'userAddress',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./userinfo/address/user.address')['UserAddress']);
+            }, 'web/malls/malls');
+        }
+    },
 ];
 
 export default routes;

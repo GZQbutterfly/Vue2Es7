@@ -1,9 +1,9 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import { Component } from 'vue-property-decorator';
+import  BaseVue  from 'base.vue';
 import { get } from 'lodash';
 
-import { getZoneData } from '../../../commons/common.env';
-import { Address } from '../../../commons/components/address/address';
+import { getZoneData } from 'common.env';
+import { Address } from '../../../../sys/address/address';
 
 import service from './user.address.service';
 import './user.address.scss';
@@ -16,7 +16,7 @@ import './user.address.scss';
 })
 export class UserAddress extends BaseVue {
     addressList = [];
-    private _$service;
+    _$service;
     mounted() {
         this._$service = service(this.$store);
 
@@ -32,11 +32,11 @@ export class UserAddress extends BaseVue {
                 return;
             }
             this.addressList = get(_result, 'data');
-            let _addressList: any = this.addressList;
-            _addressList.sort((a: any, b: any) => b.isDefault - a.isDefault);
+            let _addressList = this.addressList;
+            _addressList.sort((a, b) => b.isDefault - a.isDefault);
             if (_addressList && _addressList.length) {
                 for (let i = 0, len = _addressList.length; i < len; i++) {
-                    let _address: any = _addressList[i];
+                    let _address = _addressList[i];
                     _address.addressInfo = getZoneData(_address);
                 }
             }

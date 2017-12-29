@@ -2,8 +2,7 @@
 let webpack = require('webpack'),
     path = require('path'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    CopyWebpackPlugin = require('copy-webpack-plugin'),
-    CleanWebpackPlugin = require('clean-webpack-plugin');
+    CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 // ==>
@@ -18,8 +17,8 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: 'vue-loader',
-                include: [path.join(__dirname, '../src/commons')],
-                exclude: /node_modules/
+                //include: [path.join(__dirname, '../src/commons')],
+                //exclude: /node_modules/
             }, {
                 test: /\.js$/,
                 use: ['babel-loader'],
@@ -61,14 +60,6 @@ module.exports = {
                 from: path.join(__dirname, '../src/static'),
                 to: path.join(__dirname, '../dist/static')
             }
-        ]),
-        new CleanWebpackPlugin(['../dist'],
-            {
-                root: __dirname,
-                verbose: true,
-                dry: false,
-                allowExternal: true
-            }
-        )
+        ])
     ]
 };

@@ -12,7 +12,7 @@
 <div id="iconsList">
     <div class="swiper-container" ref="bannerSwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item,index) in iconsList" key="index">
+            <div class="swiper-slide" v-for="(item,index) in iconsList" :key="index">
 
                 <div @click="goPage($event,item.linkLocation)">
                     <img :src="item.img" alt="">

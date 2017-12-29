@@ -13,15 +13,15 @@ export default ()=>{
                 imgActSrc: 'static/images/newshop/house.png'
             },
             {
-                path: '/type',
-                name: 'type',
+                path: '/classify',
+                name: 'classify',
                 title: '分类',
                 imgDefSrc: 'static/images/newshop/icon.png',
                 imgActSrc: 'static/images/newshop/icon2.png'
             },
             {
-                path: '/shoppcar',
-                name: 'shoppcar',
+                path: '/shop_car',
+                name: 'shop_car',
                 title: '购物车',
                 showBadge: true,
                 imgDefSrc: 'static/images/newshop/shopping-cart.png',

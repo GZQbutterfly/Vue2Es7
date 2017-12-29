@@ -1,5 +1,5 @@
 import {Component} from 'vue-property-decorator';
-import {BaseVue} from 'base.vue';
+import BaseVue from 'base.vue';
 import {get, merge} from 'lodash';
 
 import {cleanLocalUserInfo, getLocalUserInfo, setLocalUserInfo} from 'common.env';

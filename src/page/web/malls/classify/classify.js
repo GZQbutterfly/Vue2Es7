@@ -1,11 +1,14 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../commons/base-vue/base.vue';
-import './classify.scss';
-import classifyService from './classify.service';
-import getShopCarCount from '../home/getShopCarCount';
-import { isNotLogin, toLogin, appendParams } from "../../commons/common.env";
-import { NavScrollc } from "./navScroll/navScroll.component";
+import {Component} from 'vue-property-decorator';
+import  BaseVue  from 'base.vue';
 
+import getShopCarCount from '../home/getShopCarCount';
+import { isNotLogin, toLogin, appendParams } from 'common.env';
+import { NavScrollc } from './navScroll/navScroll';
+
+
+
+import classifyService from './classify.service';
+import './classify.scss';
 @Component({
     template: require('./classify.html'),
     components: {
@@ -14,21 +17,22 @@ import { NavScrollc } from "./navScroll/navScroll.component";
 })
 export class Classify extends BaseVue {
     // 组件方法也可以直接声明为实例的方法
-    show: any = 1;
-    classfyList: any = [];
-    classfyId: any = [];
-    classfyGoodsList: any = [];
-    private _$service: any;
-    classifyAdImgPic: any = [];
-    config: any = {};
-    bb: any = [];
-    page: number = 1;
-    bannerShow: boolean = true;
-    headImg: any = '/static/images/pic-nologin.png';
-    noflag: boolean = true;
-    shopkeeper: any = {};
+    show = 1;
+    classfyList = [];
+    classfyId = [];
+    classfyGoodsList = [];
+
+    classifyAdImgPic = [];
+    config = {};
+    bb = [];
+    page = 1;
+    bannerShow = true;
+    headImg = '/static/images/pic-nologin.png';
+    noflag = true;
+    shopkeeper = {};
     //private _getShopCarCount;
-    private _classfyList;
+    _classfyList;
+    _$service;
     data() {
         return {
             // show: true
@@ -43,7 +47,7 @@ export class Classify extends BaseVue {
         this.$nextTick(() => {
             this._classfyList = this._$service.classfyList();
             this.fetchShopData()
-                .then((res: any) => {
+                .then((res) => {
                     let config = {
                         title: res.wdName + ',超值特惠',
                         desc: '一言不合买买买！~',
@@ -73,7 +77,7 @@ export class Classify extends BaseVue {
             if (!shopId) {
                 shopId = wdInfo.infoId;
             }
-            this._$service.queryWdInfo(shopId).then((res: any) => {//获取店信息
+            this._$service.queryWdInfo(shopId).then((res) => {//获取店信息
                 console.log(res);
                 if (!res.data.wdVipInfo.wdImg) {
                     res.data.wdVipInfo.wdImg = "/static/images/newshop/touxiang.png"
@@ -84,12 +88,12 @@ export class Classify extends BaseVue {
                     vipGrade: res.data.wdVipInfo.wdVipGrade
                 }
             })
-        
+
         this.page = 1;
         let classify = this.$route.query.classify;
         _this.classfyList = res.data.data;
         _this.classfyId = [];
-       
+
         _this.classfyList.forEach(item => {
             _this.classfyId.push(item.goodsClassifyId);
         });
@@ -106,7 +110,7 @@ export class Classify extends BaseVue {
             } else {
                 _this.show = _this.classfyList[0].goodsClassifyId;
             }
-            _this.getImgs(_this.show);  
+            _this.getImgs(_this.show);
         } else {
             _this.show = _this.classfyId[0];
             _this.getImgs(_this.classfyId[0]);
@@ -158,7 +162,7 @@ export class Classify extends BaseVue {
     getImgs(classify) {
         let _this = this;
         _this._$service.getClassifyAdImg(parseInt(classify)).then(res => {
-           
+
             _this.classifyAdImgPic = [];
             console.log(res);
             if (res.data.data.length == 0 || !res.data.data) {
@@ -172,7 +176,7 @@ export class Classify extends BaseVue {
                 classifyAd.push(item);
             })
             _this.classifyAdImgPic = classifyAd;
-           
+
         });
 
         let opt = {

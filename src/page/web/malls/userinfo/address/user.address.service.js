@@ -5,7 +5,7 @@ export default (_store) => {
     let _http = _state.$http;
 
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,

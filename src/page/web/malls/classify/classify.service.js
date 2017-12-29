@@ -1,7 +1,7 @@
 
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     let classfyList = 'api/goods/q_classifys_icon';  //分类图标列表

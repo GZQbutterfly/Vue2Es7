@@ -65,7 +65,7 @@
  cnpm install  vue-lazyload                                   --save
  cnpm install  vue-scroller                                   --save
  cnpm install  vue2-animate                                   --save
-
+ cnpm install  vue-video-player   --save
 
 ###log
  cnpm install  vconsole                                       --save

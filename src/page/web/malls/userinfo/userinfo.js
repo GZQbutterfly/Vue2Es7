@@ -1,5 +1,5 @@
 import { Component} from 'vue-property-decorator';
-import { BaseVue } from 'base.vue';
+import  BaseVue  from 'base.vue';
 import userInfoService from './userinfo.service';
 //import getShopCarCount from '../home/getShopCarCount';
 //import dialog from '../../components/popup/dialog';

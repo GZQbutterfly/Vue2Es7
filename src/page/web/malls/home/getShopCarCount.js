@@ -1,7 +1,7 @@
-import { isNotLogin } from "../../commons/common.env";
+import { isNotLogin } from 'common.env';
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     let goodesList = 'api/shopcart/q_cart_goodses';
@@ -25,21 +25,21 @@ export default (_store) => {
                     page: 1,
                     limit: 10
                 }).then(res => {
-                    if (res.data.data && res.data.data.length!=0){                  
+                    if (res.data.data && res.data.data.length!=0){
                     res.data.data.forEach(lists => {
                         lists.shopCarts.forEach(item => {
                             if (item.isValid === 1) {
                                 validLists.push(item);
                             }
                         });
-                      
+
                     });
                     validLists.forEach(ele => {
                         num += Number(ele.number);
                     });
                     _state.shopCar.count = num;
                     }else{
-                        _state.shopCar.count = 0; 
+                        _state.shopCar.count = 0;
                     }
                 })
             } else {
@@ -49,7 +49,7 @@ export default (_store) => {
                         ele.shopCarts.forEach(item=>{
                             num += Number(item.number);
                         })
-                       
+
                     });
                     _state.shopCar.count = num;
                 } else {

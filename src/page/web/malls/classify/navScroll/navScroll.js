@@ -1,33 +1,34 @@
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import {Component, Vue} from 'vue-property-decorator';
+
 
 import { isEmpty, findIndex } from 'lodash';
 
-import { Swiper } from '../../../commons/assets/swiper';
+import Swiper  from 'swiper';
 
 
 
-import navScrollComponentService from "./navScroll.component.service";
+import navScrollService from './navScroll.service';
 
 
 
-import './navScroll.component.scss';
+import './navScroll.scss';
 
 @Component({
     props: ['config', 'onchangeShop'],
-    template: require('./navScroll.component.html')
+    template: require('./navScroll.html')
 })
 export class NavScrollc extends Vue {
-    classifyShow: any = '';//图片显示
-    private _$service: any;
-    classfyList: any = [];//分类数据
-    classfyId: any = [];//分类id
-    swiper: any;
+    classifyShow = '';//图片显示
+
+    classfyList = [];//分类数据
+    classfyId = [];//分类id
+    swiper;
+    _$service;
     data() {
         return {}
     }
     created() {
-        this._$service = navScrollComponentService(this.$store);
+        this._$service = navScrollService(this.$store);
         let classify = this.$route.query.classify;
         let _this = this;
         this.$nextTick(() => {
@@ -46,7 +47,7 @@ export class NavScrollc extends Vue {
                           _this.classifyShow = classify;
                         }else{
                             _this.classifyShow = _this.classfyList[0].goodsClassifyId;
-                        }  
+                        }
                     } else {
                         _this.classifyShow = _this.classfyList[0].goodsClassifyId;
                     }
@@ -55,7 +56,7 @@ export class NavScrollc extends Vue {
         });
     }
     mounted() {
-        let _self: any = this;
+        let _self = this;
         let _route = _self.$route;
         let _query = _route.query;
         let firstIndex = 0;// 保持第一个
@@ -86,7 +87,7 @@ export class NavScrollc extends Vue {
         })
     }
     activated() {
-        // keep-alive 
+        // keep-alive
         let classify = this.$route.query.classify;
         if (classify) {
             this.classifyShow = classify;

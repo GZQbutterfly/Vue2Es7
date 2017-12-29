@@ -1,15 +1,21 @@
 import VueRouter from 'vue-router';
 
-import loginRoutes from '../sys/login/login.routes';
+import sysRoutes from '../sys/sys.routes';
 import mallsRoutes from './malls/malls.routes';
+import orderRoutes from './order/order.routes';
+
 
 const routes = [
     {
         path: '/',
         redirect: {name: 'layout'}
     },
-    ...loginRoutes,
+    // sys
+    ...sysRoutes,
+    // 商城 malls
     ...mallsRoutes,
+    // 订单order
+    ...orderRoutes,
 ];
 
 

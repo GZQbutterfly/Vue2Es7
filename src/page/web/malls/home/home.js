@@ -1,5 +1,5 @@
 import {Component} from 'vue-property-decorator';
-import {BaseVue} from 'base.vue';
+import BaseVue from 'base.vue';
 
 import {debounce} from 'lodash';
 import {isNotLogin, toLogin, appendParams, isWeiXin, getAuthUser} from 'common.env';
@@ -268,7 +268,7 @@ export class Home extends BaseVue {
 
     navSelected(index, data) {
         this.$router.push({
-            path: 'type',
+            path: 'classify',
             query: {
                 classify: data.goodsClassifyId
             }
@@ -303,7 +303,7 @@ export class Home extends BaseVue {
 
     onSeeAll(classifyId) {
         this.$router.push({
-            path: "type",
+            path: "classify",
             query: {
                 classify: classifyId
             }
