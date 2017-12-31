@@ -48,11 +48,14 @@ export class Address extends Vue {
             _scope.zipCode = _item.zipCode;
             _scope.isDefault = _item.isDefault;
             let _result = getZoneData(_item);
-            this.cityList = _result.province.ch;
-            this.districtList = _result.city.ch;
-            _scope.province = _result.province.co;
-            _scope.city = _result.city.co;
-            _scope.district = _result.district.co;
+            _result.then((res)=>{
+                this.cityList = res.province.ch;
+                this.districtList = res.city.ch;
+                _scope.province = res.province.co;
+                _scope.city = res.city.co;
+                _scope.district = res.district.co;
+            })
+            
             // 修正详细地址文本域的默认值高度不凸显
             timeout(()=>{
                 let _arearef = this.$refs.textareaRef;

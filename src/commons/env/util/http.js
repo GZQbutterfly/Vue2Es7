@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {qs} from 'common.env';
+import {qs} from './env';
 
 let baseURL = 'http://qa.365bencao.cn/malls/';
 

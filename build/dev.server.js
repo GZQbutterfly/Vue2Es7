@@ -5,8 +5,8 @@ let webpack = require('webpack'),
 
 
 
-let pathname = 'qaservice.365bencao.cn',
-    port = 80;
+let pathname = '127.0.0.1';//'qaservice.365bencao.cn',
+    port = 8003;
 
 // ==>
 new WebpackDevServer(webpack(config), {
