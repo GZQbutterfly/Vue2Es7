@@ -2,7 +2,7 @@
 import  BaseVue  from 'base.vue';
 import { Component } from 'vue-property-decorator';
 
-import { MultiTab } from '../../../components/multitab/multitab.component';
+import  MultiTab  from '../../../../commons/vue_plugins/components/multitab/multitab.vue';
 import stockOrderService from './stock.order.service';
 import { StockOrderItem } from './item/stock.order.item';
 import './stock.order.scss';

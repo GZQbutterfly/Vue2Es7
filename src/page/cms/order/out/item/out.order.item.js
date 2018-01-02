@@ -1,10 +1,9 @@
+import { Component,Vue } from 'vue-property-decorator';
 
-import Component from 'vue-class-component';
-import Vue from 'vue';
 import './out.order.item.scss';
 import itemService from './out.order.item.service';
-import { getLocalUserInfo, toCMS, toWEB } from '../../../../commons/common.env';
-import dialog from '../../../../components/popup/dialog';
+import { getLocalUserInfo, toCMS, toWEB } from 'common.env';
+
 
 @Component({
 	template: require('./out.order.item.html'),
@@ -13,13 +12,12 @@ import dialog from '../../../../components/popup/dialog';
 
 export class OutOrderItem extends Vue {
 
-	private _$service: any;
+	_$service;
+	expand = false;
 
-	expand: boolean = false;
+	timeLeftTimer;
 
-	private timeLeftTimer: any;
-
-	timeLeft: any = 0;
+	timeLeft = 0;
 
 	mounted() {
 		//注册服务
@@ -54,7 +52,7 @@ export class OutOrderItem extends Vue {
 		}
 	}
 
-	expanded(expand): void {
+	expanded(expand) {
 		this.expand = expand;
 	}
 

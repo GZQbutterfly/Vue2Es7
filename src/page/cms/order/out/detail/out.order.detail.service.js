@@ -1,5 +1,5 @@
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
     let user = localStorage._user && JSON.parse(localStorage._user);// _state.workVO.user;
     //获取订单详情
@@ -8,7 +8,7 @@ export default (_store) => {
     let throwOrderUrl = 'api/order_out/throw_order';
     //获取上级信息
     const upInfo = 'api/wd_vip/q_up_wdinfo';
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,

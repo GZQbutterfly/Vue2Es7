@@ -14,7 +14,7 @@ require('./stock.order.detail.scss');
 export class StockOrderDetail extends BaseVue {
 
     _$service;
-    private orderId;
+    orderId;
     timerID;
     orderTimer = {
         int_hour: 0,

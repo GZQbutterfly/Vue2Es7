@@ -1,7 +1,7 @@
 // 出貨訂單
 import BaseVue  from 'base.vue';
 import { Component } from 'vue-property-decorator';
-import { MultiTab } from '../../../components/multitab/multitab.component';
+import  MultiTab  from '../../../../commons/vue_plugins/components/multitab/multitab.vue';
 import shipOrderListService from './out.order.service';
 import { OutOrderItem } from './item/out.order.item';
 
@@ -110,7 +110,7 @@ export class OutOrder extends BaseVue {
             //提成信息
             let commi = data.orderCommi;
             for (let i = 0; i < orders.length; ++i) {
-                let order: any = orders[i];
+                let order = orders[i];
                 order.goodses = new Array();
                 for (let k = 0; k < goodses.length; ++k) {
                     let goods = goodses[k]

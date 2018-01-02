@@ -1,26 +1,39 @@
-import { OutOrder } from './out/out.order';
-import { StockOrder } from './stock/stock.order';
-import { StockOrderDetail } from './stock/detail/stock.order.detail';
-import { OutOrderDetail } from './out/detail/out.order.detail';
-import { resolve } from 'dns';
+
 
 const routes = [
     {
-        path: '/cmsoutOrder',
-        name: 'cmsoutOrder',
-        component: (resolve) => resolve(OutOrder)
+        path: '/cmsout_order',
+        name: 'cmsout_order',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./out/out.order')['OutOrder']);
+            }, 'cms/order/order');
+        }
     }, {
-        path: '/cmsStockOrder',
-        name: 'cmsStockOrder',
-        component: (resolve) => resolve(StockOrder)
+        path: '/cms_stock_order',
+        name: 'cms_stock_order',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./stock/stock.order')['StockOrder']);
+            }, 'cms/order/order');
+        }
     }, {
-        path: '/cmsStockOrderDetail',
-        name: 'cmsOrderDetail',
-        component: (resolve) => resolve(StockOrderDetail)
+        path: '/cms_stock_order_detail',
+        name: 'cms_stock_order_detail',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./stock/detail/stock.order.detail')['StockOrderDetail']);
+            }, 'cms/order/order');
+        }
     }, {
-        path: '/cmsOutOrderDetail',
-        name: 'cmsOutOrderDetail',
-        component: (resolve) => resolve(OutOrderDetail),
+        path: '/cms_out_order_detail',
+        name: 'cms_out_order_detail',
+        component: resolve => {
+            require.ensure([], require => {
+                resolve(require('./out/detail/out.order.detail')['OutOrderDetail']);
+            }, 'cms/order/order');
+        }
     }
 ];
+
 export default routes;
