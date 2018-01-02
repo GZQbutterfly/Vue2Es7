@@ -22,7 +22,7 @@ module.exports = {
             }, {
                 test: /\.js$/,
                 use: ['babel-loader'],
-                include: [path.join(__dirname, '../src/page'), path.join(__dirname, '../src/commons/env/base_vue')],
+                include: [path.join(__dirname, '../src')],
                 exclude: /node_modules/
             }, {
                 test: /\.(html|htm)$/,

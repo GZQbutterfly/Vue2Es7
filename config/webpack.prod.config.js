@@ -8,18 +8,16 @@ let webpack = require('webpack'),
     baseConfig = require('./webpack.base.config');
 
 baseConfig.entry = {
-    'web/main': path.join(__dirname, '../src/page/web/index.js'),
-    'cms/main': path.join(__dirname, '../src/page/cms/index.js'),
-    'sys/env': [
-        path.join(__dirname, '../src/commons/env/common.env.js'),
-        path.join(__dirname, '../src/commons/env/base_vue/base.vue.js'),
-        path.join(__dirname, '../src/commons/assets/swiper/swiper.js')
-    ],
-    'static/lib/vue_mode': [
-        'vue', 'vue-property-decorator', 'vue-class-component'
-    ],
-    'static/lib/swiper': [path.join(__dirname, '../src/commons/assets/swiper/swiper.js')],
-    'static/data/areas_data': [path.join(__dirname, '../src/commons/env/areas/areas_data.js')]
+     'static/lib/vue_mode': ['vue', 'vue-property-decorator', 'vue-class-component'],
+     'static/lib/lodash': ['lodash'],
+     'sys/env/common.env': [
+         path.join(__dirname, '../src/commons/env/base_vue/base.vue.js'),
+         path.join(__dirname, '../src/commons/env/common.env.js')
+     ],
+     'sys/plugins/swiper': [path.join(__dirname, '../src/commons/assets/swiper/swiper.js')],
+      // main 
+      'web/main': path.join(__dirname, '../src/page/web/index.js'),
+      'cms/main': path.join(__dirname, '../src/page/cms/index.js'),
 };
 
 
@@ -31,7 +29,7 @@ baseConfig.plugins.push(
         },
         favicon: path.join(__dirname, '../src/page/favicon.ico'),
         inject: 'body',
-        chunks: ['static/data/areas_data', 'static/lib/vue_mode', 'sys/env', 'web/main']
+        chunks: [ 'static/lib/lodash','static/lib/vue_mode', 'sys/env/common.env','sys/plugins/swiper', 'web/main']
     }),
     new HtmlWebpackPlugin({
         filename: path.join(__dirname, '../dist/cms/index.html'),
@@ -41,11 +39,14 @@ baseConfig.plugins.push(
         },
         favicon: path.join(__dirname, '../src/page/favicon.ico'),
         inject: 'body',
-        chunks: ['static/data/areas_data', 'static/lib/vue_mode', 'sys/env', 'cms/main']
+        chunks: ['static/lib/lodash','static/lib/vue_mode', 'sys/env/common.env','sys/plugins/swiper', 'cms/main']
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: [
-            'static/lib/vue_mode', 'static/data/areas_data', 'sys/env'
+            'static/lib/lodash',
+            'static/lib/vue_mode', 
+            'sys/env/common.env',
+            'sys/plugins/swiper'
         ],
         minChunks: Infinity
     }),
@@ -69,10 +70,6 @@ baseConfig.plugins.push(
                 warnings: false
             }
         }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: ['vue', 'common.env', 'areasData'],
-        minChunks: Infinity
     }),
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')

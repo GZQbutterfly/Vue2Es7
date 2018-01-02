@@ -1,44 +1,46 @@
-import AreasData from '../areas/areas_data';
-import { set, merge, find, get, isEmpty } from 'lodash';
+import { find } from 'lodash';
 import { getLocalUserInfo } from './login';
 // import loadding from '../../components/popup/loadding';
 // import topLoadding from '../../components/popup/topLoadding';
 // import dialog from '../../components/popup/dialog';
 import qs from 'qs';
 
-//import 'babel-polyfill';
 
 // 序列化对象
 export { qs };
 
-let  wxAppid = 'wx676602d0ebcb0be1';
+let wxAppid = 'wx676602d0ebcb0be1';
 
-if ( location.origin.indexOf('xhjx.') != -1) {
+if (location.origin.indexOf('xhjx.') != -1) {
     wxAppid = 'wx676602d0ebcb0be1';
-}else if(location.origin.indexOf('qaservice.') != -1){
+} else if (location.origin.indexOf('qaservice.') != -1) {
     wxAppid = 'wx6a032ad0cdca7a6b';
-}else {
+} else {
     wxAppid = 'wx6a032ad0cdca7a6b';
 }
-// 全局微信 wxAppid
+//全局微信 wxAppid
 export { wxAppid };
 
-const aliAppid = process.env.NODE_ENV == 'development' ? 'ali6a032ad0cdca7a6b' : 'ali6a032ad0cdca7a6b';
-
-// 全局支付宝 aliAppid
-export { aliAppid };
-
 // 区域数据
-export { AreasData };
+export function getAreasData() {
+    return new Promise((resolve) => {
+        require.ensure([], require => {
+            resolve(require('../areas/areas_data'));
+        }, 'static/data/areas_data');
+    });
+};
 
 
 let hasOwn = {}.hasOwnProperty;
-export {hasOwn};
+
+export { hasOwn };
+
 /**
 * 获取区域信息
 * @param _item
 */
-export function getZoneData(_item) {
+export async function getZoneData(_item) {
+    let AreasData = await getAreasData();
     let _result = {};
     let _param = {};
     if (_item.province) {
@@ -58,7 +60,7 @@ export function getZoneData(_item) {
             }
         }
     }
-    return _result;
+    return result;
 }
 
 
@@ -200,7 +202,7 @@ try {
 } catch (_) {
     let dialogObj = {
         title: '提示',
-        content: '本地储存写入错误，浏览器请关闭隐身模式浏览。',
+        content: '尊敬的用户，为了您的更好体验，我们建议您不要使用无痕或者隐身模式进行浏览！',//'本地储存写入错误，浏览器请关闭隐身模式浏览。',
         mainBtn: '知道啦',
         type: 'error',
         mainFn() { }
