@@ -1,7 +1,7 @@
 
 import { Component } from 'vue-property-decorator';
-import { Swiper } from '../../../commons/assets/swiper';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import  Swiper  from 'swiper';
+import  BaseVue  from 'base.vue';
 import helperService from './helper.service';
 import './helper.scss';
 
@@ -10,9 +10,9 @@ import './helper.scss';
 })
 
 export class Helper extends BaseVue {
-    private _$service: any;
-    dataList:any = [];
-    swiper:any;
+    _$service;
+    dataList = [];
+    swiper;
 
     mounted() {
         //注册服务

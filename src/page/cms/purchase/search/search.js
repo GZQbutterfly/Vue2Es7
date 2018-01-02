@@ -1,8 +1,8 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import Vuex from 'vuex';
+import { Component} from 'vue-property-decorator';
+import BaseVue  from 'base.vue';
+
 import searchService from './search.service';
-import { GoodsList } from '../goodsList/goodsList';
+import { GoodsList } from '../goods_list/goods_list';
 import { debounce } from 'lodash';
 import './search.scss';
 
@@ -11,18 +11,18 @@ import './search.scss';
 })
 
 export class Search extends BaseVue {
-    ipt_search: string = '';
-    frm_push: boolean = false;
-    data_hot: Array<string> = [];
-    data_history: Array<string> = [];
-    data_keyword: Array<string> = [];
-    data_goods: any = { 'data': [] };
+    ipt_search = '';
+    frm_push = false;
+    data_hot= [];
+    data_history = [];
+    data_keyword = [];
+    data_goods = { 'data': [] };
 
-    search_page: number = 0;
-    search_limit: number = 10;
+    search_page = 0;
+    search_limit = 10;
 
-    search_flag: boolean = true;
-    private _$service: any;
+    search_flag = true;
+     _$service;
 
     created() {
 
@@ -101,7 +101,7 @@ export class Search extends BaseVue {
         let search = this.ipt_format;
         //判断数据有效
         if (search) {
-            // hash  =>  解决相同路由相同参数连续查询 
+            // hash  =>  解决相同路由相同参数连续查询
             let hash = this.$route.query.hash;
             // '==' for undefined
             hash = (hash == '1' ? '0' : '1');

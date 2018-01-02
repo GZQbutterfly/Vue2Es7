@@ -1,30 +1,31 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import { Component} from 'vue-property-decorator';
+import  BaseVue from 'base.vue';
+
+
+import { isNotLogin, toLogin, loginDialog, setUserValid, getAuthUser, isWeiXin, setCleanLocalinfo, toWEB, pageNotAccess } from 'common.env';
+
 import userInfoService from './userinfo.service';
-import dialog from '../../../components/popup/dialog';
-import { isNotLogin, toLogin, loginDialog, setUserValid, getAuthUser, isWeiXin, setCleanLocalinfo, toWEB, pageNotAccess } from '../../../commons/common.env';
 
 import './userinfo.scss';
 
 @Component({
     template: require('./userinfo.html')
 })
-
 export class CmsPurchaseUserinfo extends BaseVue {
-    userInfo: any = {};
-    userScore: any = {};
-    userLogin: boolean = false;
-    orderList: any = [];
-    private _$service: any;
-    user_img: any = '/static/images/pic-nologin.png';
-    hasShop: boolean = false;
-    userMsgNumb: number = 6;
+    userInfo = {};
+    userScore = {};
+    userLogin = false;
+    orderList = [];
+     _$service;
+    user_img = '/static/images/pic-nologin.png';
+    hasShop = false;
+    userMsgNumb = 6;
 
     // private _shopCarCount;
     mounted() {
         //注册服务
         this._$service = userInfoService(this.$store);
-        let _self: any = this;
+        let _self = this;
 
         this.$nextTick(() => {
             // 这里面是dom加载完成后的

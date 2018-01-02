@@ -1,7 +1,6 @@
 // 提交订单页面（预提交订单）
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import { Component} from 'vue-property-decorator';
+import { BaseVue } from 'base.vue';
 
 import { get } from 'lodash';
 
@@ -20,22 +19,21 @@ import './submit.order.scss';
 
 export class CmsPurchaseSubmitOrder extends BaseVue {
     showNowifi = false;
-    orderSrouce: string = 'car';//订单来源（商品goods，购物车car）
-    orderList: any = [];
-    goodsId: any;
-    number: any;
-    combinOrderNo: any;
-    orderTotal: any = {
+    orderSrouce = 'car';//订单来源（商品goods，购物车car）
+    orderList = [];
+    goodsId;
+    number;
+    combinOrderNo;
+    orderTotal = {
         price: 0, //总价格
         transportPrice: 0, //总配送费
         pay: 0 //支付总价
     };
     payResult = {};// 支付结果
-    private _$t: any;
-    private _$service: any;
-    satisfyShow: Boolean = false;
-    orderId: any = 1;//订单id
-    chooseGoodsList: any = [];
+    _$service;
+    satisfyShow = false;
+    orderId = 1;//订单id
+    chooseGoodsList = [];
     data() {
         return {};
     }
@@ -175,7 +173,7 @@ export class CmsPurchaseSubmitOrder extends BaseVue {
             data = {
                 goodsId: _this.goodsId,               								//商品Id
                 number: _this.number,
-                // shopId:_this.shopId										//数量										
+                // shopId:_this.shopId										//数量
             }
             _this._$service.submitOrder(data).then(res => {
                 if (res.data.errorCode) {
@@ -211,7 +209,7 @@ export class CmsPurchaseSubmitOrder extends BaseVue {
         //购物车提交
         else {
             data = {
-                wholeShopCartIds: _this.$route.query.cartId									//数量										
+                wholeShopCartIds: _this.$route.query.cartId									//数量
             };
             _this._$service.submitMutiOrder(data).then(res => {
                 if (res.data.errorCode) {
@@ -246,7 +244,7 @@ export class CmsPurchaseSubmitOrder extends BaseVue {
         }
     }
     payCallBack(res) {
-        let _self: any = this;
+        let _self = this;
         if (res) {
             //console.log('已支付');
             this.$router.push({ path: 'cmsStockOrder', query: { listValue: '0' } });

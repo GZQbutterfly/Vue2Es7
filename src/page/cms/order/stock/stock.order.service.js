@@ -1,11 +1,11 @@
 
 export default (store) => {
-  let _state: any = store.state;
+  let _state = store.state;
   let _http = _state.$http;
 
   let stockOrderUrl = 'api/order_whole/q_orders';
 
-  function q(url, data?) {
+  function q(url, data) {
     return _http({
       data: data,
       url: url,

@@ -1,5 +1,5 @@
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import BaseVue  from 'base.vue';
 
 
 

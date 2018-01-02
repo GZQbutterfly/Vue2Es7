@@ -1,9 +1,10 @@
 // 实名认证
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
-import { timeout } from '../../../../commons/common.env';
+import  BaseVue  from 'base.vue';
+import { timeout } from 'common.env';
 import service from './form.service';
 import './form.scss';
+
 @Component({
     template: require('./form.html')
 })
@@ -15,7 +16,7 @@ export class RealNameForm extends BaseVue {
     upImg = '';
     footerStyle = { position: 'fixed', bottom: 0 };
     resizeFlag = false;
-    private _$service;
+    _$service;
     mounted() {
         this._$service = service(this.$store);
         this.$nextTick(() => {
@@ -24,9 +25,9 @@ export class RealNameForm extends BaseVue {
         });
     }
     resizeWin() {
-        let _self: any = this;
+        let _self = this;
         let _footerRef = _self.$refs.footerRef;
-        let activeElement: any = document.activeElement;
+        let activeElement = document.activeElement;
         if (/input/i.test(activeElement.tagName)) {
             if (_self.resizeFlag) {
                 _self.resizeFlag = false;
@@ -44,7 +45,7 @@ export class RealNameForm extends BaseVue {
      * 选择需要上传的文件
      */
     selectFile() {
-        let _fileBtn: any = this.$refs.fileBtn;
+        let _fileBtn = this.$refs.fileBtn;
         _fileBtn.click();
         timeout(() => {
             this.resizeFlag = false;
@@ -52,21 +53,21 @@ export class RealNameForm extends BaseVue {
         }, 100);
     }
     changeFile(e) {
-        let _self: any = this;
+        let _self = this;
         let _target = e.target;
         let _file = _target.files[0];
         let freader = new FileReader();
         freader.readAsDataURL(_file);
-        freader.onload = function (ev: any) {
+        freader.onload = function (ev) {
             _self.upImg = ev.target.result;
             // console.log('图片上传。。。。')
         }
         _self.userInfo.file = _file;
     }
     removeFile() {
-        let _self: any = this;
+        let _self = this;
         _self.upImg = '';
-        let _fileBtn: any = this.$refs.fileBtn;
+        let _fileBtn = this.$refs.fileBtn;
         _fileBtn.files.clear();
     }
 
@@ -82,19 +83,19 @@ export class RealNameForm extends BaseVue {
                     type: 'info',
                     assistFn() { },
                     mainFn() {
-                        _self.$router.push('cmsHome');
+                        _self.$router.push('cms_home');
                     }
                 };
                 _self.$store.state.$dialog({ dialogObj });
                 return;
             }
-            let _userInfo: any = this.userInfo;
-            let _formstate: any = this.formstate;
+            let _userInfo = this.userInfo;
+            let _formstate = this.formstate;
             if (_formstate.$invalid) {
                 return;
             }
             if (!_userInfo.file) {
-                let _self: any = this;
+                let _self = this;
                 let dialogObj = {
                     title: '上传提示',
                     content: '请上传手持身份证照片!',
@@ -117,8 +118,8 @@ export class RealNameForm extends BaseVue {
             }
         });
     }
-    errorResult(msg?) {
-        let _self: any = this;
+    errorResult(msg) {
+        let _self = this;
         let dialogObj = {
             title: '提示',
             content: msg || '服务异常',
@@ -131,8 +132,8 @@ export class RealNameForm extends BaseVue {
         _self.$store.state.$dialog({ dialogObj });
     }
     successResult(res) {
-        let result: any = { 'data': res };
-        this.$router.push({ path: 'realNameResult', query: { result: result } });
+        let result = { 'data': res };
+        this.$router.push({ path: 'real_name_result', query: { result: result } });
     }
     beforeDestroy() {
         window.removeEventListener('resize', this.resizeWin);

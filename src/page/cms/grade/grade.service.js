@@ -1,14 +1,14 @@
 import { find, set, get } from 'lodash';
-import { guid } from '../../commons/common.env';
+import { guid } from 'common.env';
 //
 export default (store) => {
-    let _state: any = store.state;
+    let _state = store.state;
     let _catch = _state.catch;
     let _http = _state.$http;
 
     let _guid = guid();
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -30,7 +30,7 @@ export default (store) => {
         /**
          * 获取用户当前的等级信息
          */
-        queryCurrentGrade(data?) {
+        queryCurrentGrade(data) {
             return q('api/wd_vip/myGrade', data).then((res) => {
                 let _result = res.data;
                 if (_result.errorCode) {

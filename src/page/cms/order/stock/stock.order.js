@@ -1,6 +1,7 @@
 //进货订单
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import Component from 'vue-class-component';
+import  BaseVue  from 'base.vue';
+import { Component } from 'vue-property-decorator';
+
 import { MultiTab } from '../../../components/multitab/multitab.component';
 import stockOrderService from './stock.order.service';
 import { StockOrderItem } from './item/stock.order.item';
@@ -16,15 +17,15 @@ import './stock.order.scss';
 
 export class StockOrder extends BaseVue {
 
-    private _$service: any;
+    _$service;
 
-    tabIndex: any = 0;
+    tabIndex = 0;
 
-    dataStockList: any = [];
+    dataStockList = [];
 
     noDataList = [false, false, false, false];
 
-    pageList: any = [0, 0, 0, 0];
+    pageList = [0, 0, 0, 0];
 
     data() {
         return {

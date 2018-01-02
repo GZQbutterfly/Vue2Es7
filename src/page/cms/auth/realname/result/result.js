@@ -1,6 +1,6 @@
 // 实名认证结果页面
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import BaseVue  from 'base.vue';
 
 import './result.scss';
 @Component({
@@ -9,7 +9,7 @@ import './result.scss';
 export class RealNameResult extends BaseVue {
     types = ['default', 'pending', 'reject', 'error', 'resolve'];
     resultType = '';// 返回结果 认证通过（ resolve ）;认证不通过（ reject ）; 认证等待( pending )
-    result: any = {};
+    result = {};
     _$dialog;
     mounted() {
         this._$dialog = this.$store.state.$dialog;
@@ -31,16 +31,16 @@ export class RealNameResult extends BaseVue {
             //         content: '服务异常',
             //         mainBtn: '确定',
             //         mainFn() {
-                        _self.$router.push('cmsHome');
+                        _self.$router.push('cms_home');
             //         }
             //     }
             // });
         }
     }
     toForm() {
-        this.$router.push('realNameForm');
+        this.$router.push('real_name_form');
     }
     toHome() {
-        this.$router.push('cmsHome');
+        this.$router.push('cms_home');
     }
 }

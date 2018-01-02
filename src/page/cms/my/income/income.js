@@ -1,6 +1,6 @@
 // 我的收益
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import { BaseVue } from 'base.vue';
 
 import { merge } from 'lodash';
 
@@ -12,12 +12,12 @@ import './income.scss';
 })
 export class MyIncome extends BaseVue {
     dataList = [];
-    totalMoney: any = 0;
-    todayMoney: any = 0;
-    queryPage: number = 0;
-    queryLimit: number = 10;
-    queryFlag: boolean = true;
-    private _$service;
+    totalMoney = 0;
+    todayMoney = 0;
+    queryPage = 0;
+    queryLimit = 10;
+    queryFlag = true;
+    _$service;
 
     mounted() {
         // 注册服务
@@ -42,7 +42,7 @@ export class MyIncome extends BaseVue {
      * 下一页
      */
     queryIncomeDataNext(cb) {
-        let _self: any = this;
+        let _self = this;
         _self.queryPage++;
         let data = {
             page: _self.queryPage,

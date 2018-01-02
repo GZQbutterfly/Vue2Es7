@@ -1,6 +1,6 @@
 // 我的库存
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import { BaseVue } from 'base.vue';
 import InventoryListService from './inventory.list.service';
 
 import './inventory.list.scss';
@@ -10,18 +10,18 @@ import './inventory.list.scss';
 
 export class MyInventoryList extends BaseVue {
     //key
-    keyword: string = '';
+    keyword = '';
     //搜索框的文本
-    ipt_search: string = '';
+    ipt_search = '';
     //搜索结果的页码
-    search_page: number = 0;
+    search_page = 0;
     //一页一条数据
-    search_limit: number = 10;
+    search_limit = 10;
     //搜索是否有下一页
-    search_flag: boolean = true;
+    search_flag = true;
     //界面上显示的商品数据
-    goodsData: any = { 'data': [] };
-    private _$service: any;
+    goodsData = { 'data': [] };
+    _$service;
 
     mounted() {
         //注册服务
@@ -55,7 +55,7 @@ export class MyInventoryList extends BaseVue {
         let search = this.ipt_format;
         //判断数据有效
         // if (search) {
-        // hash  =>  解决相同路由相同参数连续查询 
+        // hash  =>  解决相同路由相同参数连续查询
         let hash = this.$route.query.hash;
         // '==' for undefined
         hash = (hash == '1' ? '0' : '1');

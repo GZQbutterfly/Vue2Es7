@@ -17,28 +17,28 @@ Vue.use(VueRouter);
 //console.log(VueScroller);
 // 下拉刷新上拉加载
 Vue.use(VueScroller);
-Vue.component('scroller', resolve => {
-    require.ensure([], require => {
-        let scroller = require('vue-scroller');
-        resolve(get(scroller, 'default.Scroller') || get(scroller, 'Scroller'));
-    }, 'sys/plugins/vue_out');
-});
+// Vue.component('scroller', resolve => {
+//     require.ensure([], require => {
+//         let scroller = require('vue-scroller');
+//         resolve(get(scroller, 'default.Scroller') || get(scroller, 'Scroller'));
+//     }, 'sys/plugins/vue_out');
+// });
 
 
 
 // 渐进式图片加载
-console.log(VueProgressiveImage);
+// console.log(VueProgressiveImage);
 Vue.use(VueProgressiveImage, {
     delay: 100,
     blur: 10
 });
 
 // 图片懒加载
-console.log(VueLazyload);
+// console.log(VueLazyload);
 Vue.use(VueLazyload);
 
 // 视频播放
-console.log(VueVideoPlayer);
+// console.log(VueVideoPlayer);
 Vue.use(VueVideoPlayer);
 
 
@@ -71,12 +71,6 @@ Vue.component('pull-refresh', resolve => {
     }, 'sys/plugins/vue_env');
 });
 // <==
-
-// component: resolve => {
-//     require.ensure([], require => {
-//         resolve(require('./search/search')['Search']);
-//     }, 'sys/system');
-// },
 
 
 // 引入过滤器

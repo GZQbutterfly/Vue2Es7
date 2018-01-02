@@ -1,9 +1,9 @@
 
-import dialog from '../../../components/popup/dialog';
+
 
 export default (_store) => {
 
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     //获取热门搜索
@@ -12,7 +12,7 @@ export default (_store) => {
     let keywordlisturl =   'api/q_suggests';
     //获取搜索结果
     let goodslisturl =   'api/q_keyword';
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -28,7 +28,7 @@ export default (_store) => {
         },
         /**
          * 获取关键词联想匹配
-         * @param keyword 
+         * @param keyword
          */
         getKeyWord_list(keyword) {
             //test
@@ -39,7 +39,7 @@ export default (_store) => {
         },
         /**
          * 获取搜索结果
-         * @param keyword 
+         * @param keyword
          */
         getGoods(keyword, page, limit) {
             let data = {
@@ -67,7 +67,7 @@ export default (_store) => {
 
         /**
          * 设置一条搜索历史 所有历史最多99条
-         * @param word 
+         * @param word
          */
         setHistory(word, listMaxSize = 99) {
             if (word instanceof Array) {
@@ -89,7 +89,7 @@ export default (_store) => {
 
         /**
          * 删除一条/所有搜索历史
-         * @param e 
+         * @param e
          */
         delHistory(e) {
             if (e.nodeName === "I") {
@@ -115,7 +115,7 @@ export default (_store) => {
                             res(true);
                         }
                     };
-                    dialog({ dialogObj });
+                    _state.$dialog({ dialogObj });
                 });
             }
         },

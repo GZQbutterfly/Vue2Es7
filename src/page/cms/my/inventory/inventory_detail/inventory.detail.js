@@ -1,6 +1,6 @@
 // 我的库存详情
 import { Component, Watch } from 'vue-property-decorator';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import  BaseVue  from 'base.vue';
 
 
 import InventoryDetailService from './inventory.detail.service';
@@ -11,33 +11,33 @@ import './inventory.detail.scss';
 })
 export class MyInventoryDetail extends BaseVue {
     //索引
-    goodsId: any = 0;
+    goodsId = 0;
     //顶部商品数据
-    goodsData: any = {};
+    goodsData = {};
     //代接单数据列表
-    dataList: any = [];
+    dataList = [];
     //选择的数量
-    chooseNum: any = 0;
+    chooseNum = 0;
     //计算所有花费
-    totalMoney: number = 0;
+    totalMoney = 0;
     minMoney = 0;
     // 升级第一次
     flag = false;
     showDiscountDetail = false;
     //是否能立即进货
-    canBuy: boolean = false;
+    canBuy = false;
     countAmount = 0;
     queryOrderId = '';
     buyMaxLength = 4;
     buyMaxNum = 9999;
-    private _$service: any;
+     _$service;
 
     //结果的页码
-    search_page: number = 0;
+    search_page = 0;
     //一页一条数据
-    search_limit: number = 10;
+    search_limit = 10;
     //是否有下一页
-    search_flag: boolean = true;
+    search_flag = true;
 
     mounted() {
         //注册服务
@@ -64,8 +64,8 @@ export class MyInventoryDetail extends BaseVue {
     }
 
     //报错提示
-    errorMsgDialog(msg?, cb?) {
-        let _self: any = this;
+    errorMsgDialog(msg, cb) {
+        let _self = this;
         let dialogObj = {
             title: '提示',
             content: msg || '服务异常',
@@ -104,7 +104,7 @@ export class MyInventoryDetail extends BaseVue {
             if (_result.errorCode) {
                 _self.search_flag = false;
                 _self.errorMsgDialog();
-                // 没有订单 也可针对该商品进货  
+                // 没有订单 也可针对该商品进货
             // } else if (_orderDatas.length == 0) {
             //     _self.search_flag = false;
             } else {
@@ -150,7 +150,7 @@ export class MyInventoryDetail extends BaseVue {
     }
     /**
     * 计算所需库存值
-    * @param item 
+    * @param item
     */
     diffNeedAmout(item) {
         let _result = 0;
@@ -373,7 +373,7 @@ export class MyInventoryDetail extends BaseVue {
      * 点击立即进货
      */
     goBuy() {
-        let _self: any = this;
+        let _self = this;
         if (this.canBuy) {
             this.$router.push({ path: 'cmsPurchaseSubmitOrder', query: { goodsId: _self.goodsId, goodsType: 'entity', number: this.chooseNum, orderSrouce: 'goods' } });
         }

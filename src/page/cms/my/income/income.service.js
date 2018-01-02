@@ -1,6 +1,6 @@
 
 export default (store) => {
-    let _state: any = store.state;
+    let _state = store.state;
     let _http = _state.$http;
 
     let queryincomelist = 'api/q_api_income';
@@ -17,7 +17,7 @@ export default (store) => {
 
         /**
          * 获取收益数据
-         * @param data 
+         * @param data
          */
         queryIncomeList(data){
             return q(queryincomelist,data);

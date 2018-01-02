@@ -1,10 +1,10 @@
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
     let recommendGoodes = 'api/q_api_order_recommend';
 
-    let goodesList = 'api/wholecart/q_whole_cart_goodses'; 
+    let goodesList = 'api/wholecart/q_whole_cart_goodses';
     let deleteGoodes = 'api/wholecart/d_whole_cart_goodses';
     let changeNumber = 'api/wholecart/u_whole_goods_number';
     let synchronousShoppingCart = 'api/wholecart/a_whole_cart_goodses';

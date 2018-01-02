@@ -1,7 +1,7 @@
 export default (store) => {
     let _http = store.state.$http;
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -11,7 +11,7 @@ export default (store) => {
 
     // ==>
     return {
-        // 
+        //
         queryInviteCode() {
             return q('api/wd_vip/myInviteCode');
         },

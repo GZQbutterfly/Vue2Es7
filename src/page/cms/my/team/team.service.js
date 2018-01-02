@@ -1,10 +1,10 @@
 export default (store) => {
-    let _state: any = store.state;
+    let _state = store.state;
     let _http = _state.$http;
 
     let queryteamdata = 'api/wd_vip/q_my_team';
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,

@@ -9,8 +9,8 @@ export default (_store) => {
 
     //获取上级信息
 	const upInfo = 'api/wd_vip/q_up_wdinfo';
-	
-	function q(url, data?) {
+
+	function q(url, data) {
 		return _http({
 			data: data,
 			url: url,

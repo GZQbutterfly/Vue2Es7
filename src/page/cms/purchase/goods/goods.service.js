@@ -9,7 +9,7 @@ export default (store) => {
     //获取上级信息
     const upInfo = 'api/wd_vip/q_up_wdinfo';
     let getleastbuymoney = 'api/wd_vip/q_least_buy';
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,

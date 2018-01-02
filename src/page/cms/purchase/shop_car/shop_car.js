@@ -1,41 +1,41 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import './shopCar.scss';
-import shopCarService from './shopCar.service';
-import { isNotLogin, toLogin, cacheLogin } from "../../../commons/common.env";
-import { EFAULT } from 'constants';
+import { Component} from 'vue-property-decorator';
+import BaseVue  from 'base.vue';
+import './shop_car.scss';
+import shopCarService from './shop_car.service';
+import { isNotLogin, toLogin, cacheLogin } from "common.env";
+
 
 
 @Component({
-    template: require('./shopCar.html')
+    template: require('./shop_car.html')
 })
 export class CmsPurchaseShopCar extends BaseVue {
     // 组件方法也可以直接声明为实例的方法
-    validLists: any = []//购物车列表
-    invalidLists: any = [];//失效列表
+    validLists = []//购物车列表
+    invalidLists = [];//失效列表
     total = 0;//合计
     totalPrice = 0;//总额
     settlement = 0;//结算个数
     checkAll = false;//全选
-    isEdit: boolean = true;//编辑状态
-    edit: string = "编辑";
-    isEmpty: boolean = false;//购物车为空
-    isShow: boolean = false;//失效物品区域显示
-    recommendShow: boolean = false;
-    recommendLists: any = [];
-    private _$service: any;
-    page: any = 1;
-    flag: any = false;
-    wdName: any = '';
-    infoId: any = '';
-    headImg: any = '/static/newshop/images/pic-nologin.png';
-    qflag:boolean = true;
+    isEdit = true;//编辑状态
+    edit = "编辑";
+    isEmpty = false;//购物车为空
+    isShow = false;//失效物品区域显示
+    recommendShow = false;
+    recommendLists = [];
+    _$service;
+    page = 1;
+    flag = false;
+    wdName = '';
+    infoId = '';
+    headImg = '/static/newshop/images/pic-nologin.png';
+    qflag = true;
     //最低购买金额
-    isFirst: boolean = false;
-    leastMoney: number = 0;
+    isFirst = false;
+    leastMoney = 0;
 
 
-    private _shopcartCache;
+    _shopcartCache;
     data() {
         return {
 
@@ -67,7 +67,7 @@ export class CmsPurchaseShopCar extends BaseVue {
         _this.validLists = []//购物车列表
         _this.invalidLists = [];//失效列表
         let dialog = this.$store.state.$dialog;
-        _this._$service.getShopcarGoodsesList(1).then((res: any) => {
+        _this._$service.getShopcarGoodsesList(1).then((res) => {
             if (res.data.errCode) {
                 let dialogObj = {
                     title: '',
@@ -112,7 +112,7 @@ export class CmsPurchaseShopCar extends BaseVue {
             }else{
                 _this.wdName = res.data.data[0].wdName;
             }
-           
+
             // _this.infoId = res.data.data[0].infoId;
             res.data.data.forEach(item => {
                 item.check = false;
@@ -122,7 +122,7 @@ export class CmsPurchaseShopCar extends BaseVue {
                     _this.invalidLists.push(item);
                 }
             });
-           
+
             _this.setGoods();
             let num = 0;
             _this.validLists.forEach(ele => {
@@ -137,12 +137,12 @@ export class CmsPurchaseShopCar extends BaseVue {
             if (_this.validLists.length != 0) {
                 _this.isEmpty = false;
             }else{
-                _this.isEmpty = true;  
+                _this.isEmpty = true;
             }
-           
+
         })
         //推荐商品
-        this._$service.getShopcarRecommend().then((res: any) => {
+        this._$service.getShopcarRecommend().then((res) => {
             _this.recommendLists.length = 0;
             if (res.data.data.length == 0) {
                 _this.recommendShow = true;
@@ -170,7 +170,7 @@ export class CmsPurchaseShopCar extends BaseVue {
                     }
                 }
             }
-            _this.recommendLists = res;   
+            _this.recommendLists = res;
             _this.qflag = false;
         })
     }
@@ -196,7 +196,7 @@ export class CmsPurchaseShopCar extends BaseVue {
                 if (_this.page < 2) {
                     _this.page = 2;
                 }
-                _this._$service.getShopcarGoodsesList(_this.page).then((res: any) => {
+                _this._$service.getShopcarGoodsesList(_this.page).then((res) => {
                     if (res.data.data.length == 0 || res.data.errCode) {
                         //    _this.flag = true;
                         done(true);
@@ -220,7 +220,7 @@ export class CmsPurchaseShopCar extends BaseVue {
                     _this.qflag = false;
                     done(false);
                 });
-                //  done(_this.flag); 
+                //  done(_this.flag);
             }, 1500)
         } else {
             setTimeout(() => {
@@ -355,7 +355,7 @@ export class CmsPurchaseShopCar extends BaseVue {
         let totalMoney = 0, settlementNum = 0;
         this.validLists.forEach(item => {
             if (item.check) {
-                let num: any = Number(item.number)
+                let num = Number(item.number)
                 totalMoney += item.moneyPrice * num;//应付价格
                 settlementNum += num;
 
@@ -539,7 +539,7 @@ export class CmsPurchaseShopCar extends BaseVue {
 
     //最低购买金额
     getLeastBuyMoney(){
-        let _self:any = this;
+        let _self = this;
         _self._$service.getLeastBuyMoney().then((res) => {
             _self.isFirst = res.data.flag;
             _self.leastMoney = res.data.leastBuy;

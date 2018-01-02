@@ -1,7 +1,6 @@
-import axios from 'axios';
 
 export default (_store) => {
-    let _state:any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     //提现申请
@@ -15,7 +14,7 @@ export default (_store) => {
     //提现cms设置
     let queryWithdrawInfo = 'api/q_withdraw_msg';
 
-    function q(url, data?){
+    function q(url, data){
         return  _http({
             data: data,
             url: url,
@@ -24,7 +23,7 @@ export default (_store) => {
     }
 
     return{
-        
+
         //获取用户店铺信息
         queryShopInfo() {
             let data = {

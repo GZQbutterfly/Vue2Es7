@@ -1,13 +1,13 @@
 import { isNotLogin } from "../../../commons/common.env";
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
- 
-    
+
+
 
     let goodesList =   'api/cart/q_cart_goodses';
-   
+
     function q(url, data) {
         return _http({
             data: data,
@@ -41,14 +41,14 @@ export default (_store) => {
             }else{
                 let shopcartCache = JSON.parse(localStorage.getItem("shopcartCache"));
                 if (shopcartCache){
-                    
+
                       shopcartCache.forEach(ele => {
                           num += Number(ele.number);
                       });
                    _state.shopCar.count = num;
                 }else{
                     _state.shopCar.count = 0;
-                  
+
                 }
             }
 

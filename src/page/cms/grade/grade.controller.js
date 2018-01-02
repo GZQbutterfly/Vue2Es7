@@ -4,7 +4,7 @@
  * currentGrade{}; gradeClass  grade  gradeName userName userImg status
  * 2，vip数据： 保级规则数据，折扣数据
  */
-import { getCountDown, timeout, match } from '../../commons/common.env';
+import { getCountDown, timeout, match } from 'common.env';
 import { merge, get, isEmpty, find, set } from 'lodash';
 
 let count = 0;
@@ -14,10 +14,10 @@ let vipNames = [''];
 export default {
     /**
      * 页面第一次进来请求数据，并组装数据
-     * @param vm 
+     * @param vm
      */
     queryCurrentGrade(vm) {
-        let _self: any = this;
+        let _self = this;
         let _current = vm.currentGrade;
         vm._$service.queryCurrentGrade().then((result) => {
             if (isEmpty(result)) { return; }
@@ -26,15 +26,15 @@ export default {
             // 规则数据
             let _vipInfo = result.vipInfo;
             //_wdVipInfo.wdVipGrade = 6;
-            // 
+            //
             _current.infoId = _wdVipInfo.infoId;
             _current.grade = _wdVipInfo.wdVipGrade;
             // _wdVipInfo.purchase =100;
             // _wdVipInfo.singleBuy =1;
             // _wdVipInfo.salesNum = 1;
-            // 2，设置用户保级数据 
+            // 2，设置用户保级数据
             vm.$set(_current, 'nowData', _wdVipInfo);
-            // 3, 设置用户晋级数据 
+            // 3, 设置用户晋级数据
             vm.$set(_current, 'upData', {
                 vipGrade: _wdVipInfo.vipGrade,
                 vipNum: _wdVipInfo.vipNum,
@@ -55,11 +55,11 @@ export default {
     },
     /**
      * 解析 query vip result
-     * @param vm 
-     * @param result 
+     * @param vm
+     * @param result
      */
     parse(vm, result) {
-        let _self: any = this;
+        let _self = this;
         let _current = vm.currentGrade;
         let _cGradeNum = _current.grade;
         let _wdVipInfo = result.wdVipInfo;
@@ -77,7 +77,7 @@ export default {
                 salesNum: _wdVipInfo.salesNum
             };
         }
-        // 
+        //
         let _gradeData = _wdVipInfo || (_vGradeNum > _current.grade ? _current.upData : _current.nowData);
 
         _self.setTjInfo(vm, _vipInfo);
@@ -97,11 +97,11 @@ export default {
     setGradeList(vm, currentGrade, gradeList) {
         if (!gradeList) { return; }
         let _grade = currentGrade.grade;
-        let list: any = [];
+        let list = [];
         for (let i = 0, len = gradeList.length; i < len; i++) {
             let _gradObj = gradeList[i];
             let _vipGrade = _gradObj.vipGrade;
-            let _newItem: any = {
+            let _newItem = {
                 grade: _vipGrade,
                 name: _gradObj.name
             };
@@ -131,12 +131,12 @@ export default {
     },
     /**
      * set active grade data
-     * @param vm 
-     * @param gradeData 
-     * @param result 
+     * @param vm
+     * @param gradeData
+     * @param result
      */
     setGradeData(vm, gradeData, result) {
-        let _self: any = this;
+        let _self = this;
         let tjList = [];
         let vipInfo = result.vipInfo;
         let vipGrade = vipInfo.__grade;
@@ -164,7 +164,7 @@ export default {
             let _num = _isNextOne ? gradeData.upVipNum : gradeData.vipNum;
             tjList.push({ name: `${_pyPrefix}${vipInfo.vipNum}个M${vipInfo.vip}`, total: vipInfo.vipNum, num: _num });
         }
-        // 进货次数  
+        // 进货次数
         if (vipInfo.singleBuy) {
             tjList.push({ name: '进货次数', total: vipInfo.singleBuy, num: gradeData.singleBuy });
         }
@@ -241,7 +241,7 @@ export default {
         let _vipGrade = vipInfo.__grade;
         let _gradeData = vm.gradeData;
         // state 0 锁定  1 未锁定  2 暂停
-        // 当前VIP 考核  (考核中， 考核结束， 考核暂停， 锁定)  
+        // 当前VIP 考核  (考核中， 考核结束， 考核暂停， 锁定)
         // checking  checkover    checkstop   lock
         let _status = '';
         _gradeData.name = '保底';
@@ -291,11 +291,11 @@ export default {
     },
     /**
      * 请求 grade data 引用与点击vip卡片时请求数据
-     * @param vm 
-     * @param data 
+     * @param vm
+     * @param data
      */
     queryGradeData(vm, data) {
-        let _self: any = this;
+        let _self = this;
         let _grade = vm.currentGrade.grade;
         let _activeGrade = data.grade;
         if (_activeGrade - 1 === _grade) {

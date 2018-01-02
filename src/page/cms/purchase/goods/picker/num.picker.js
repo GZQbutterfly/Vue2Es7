@@ -1,5 +1,5 @@
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import { Component, Vue} from 'vue-property-decorator';
+
 
 require('./num.picker.scss');
 
@@ -9,9 +9,9 @@ require('./num.picker.scss');
 })
 
 export class NumberPicker extends Vue {
-    num: number = 1;
-    isShow: boolean = false;
-    showIt: boolean = false;
+    num = 1;
+    isShow = false;
+    showIt = false;
     data() {
         return {
             isShow: this.showIt

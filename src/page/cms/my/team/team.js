@@ -1,26 +1,26 @@
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import Component from 'vue-class-component';
+import { BaseVue } from 'base.vue';
+import { Component } from 'vue-property-decorator';
 import service from './team.service';
 import './team.scss';
-import { BADQUERY } from 'dns';
+
 
 @Component({
     template: require('./team.html'),
 })
 
 export class MyTeam extends BaseVue {
-    teamData: any = {
+    teamData = {
         inviteWdInfo: {},
         upperWdInfo: {},
         teamList: [],
         flag: 1,
     };
-    teamNum: number = 0;
-    private _$service;
-    private _dialog;
+    teamNum = 0;
+     _$service;
+     _dialog;
 
     mounted() {
-        let _self: any = this;
+        let _self = this;
         _self._dialog = _self.$store.state.$dialog;
         _self._$service = service(_self.$store);
         _self.$nextTick(() => {
@@ -30,7 +30,7 @@ export class MyTeam extends BaseVue {
 
     /**
      * 查看某个等级的下级
-     * @param grade 
+     * @param grade
      */
     toTeamList(grade) {
         this.$router.push({ path: 'teamList', query: { grade: grade } });
@@ -40,7 +40,7 @@ export class MyTeam extends BaseVue {
      * 查询我的团队数据
      */
     queryTeamData() {
-        let _self: any = this;
+        let _self = this;
         _self._$service.queryTeamData().then((res) => {
             if (res.data.errorCode) {
                 _self._dialog({

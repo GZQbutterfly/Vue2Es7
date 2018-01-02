@@ -1,6 +1,6 @@
 
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import  BaseVue  from 'base.vue';
 import withdrawsService from './withdraws.list.service';
 import './withdraws.list.scss';
 
@@ -9,8 +9,8 @@ import './withdraws.list.scss';
 })
 
 export class WithdrawsList extends BaseVue {
-    withdrawsData: any = [];
-    withdrawsStatusData: any = [
+    withdrawsData = [];
+    withdrawsStatusData = [
         {
             name: '提现审核中',
             desc: 'doing'
@@ -29,7 +29,8 @@ export class WithdrawsList extends BaseVue {
         }
     ];
 
-    private _$service: any;
+
+    _$service;
 
     mounted() {
         //注册服务
@@ -43,7 +44,7 @@ export class WithdrawsList extends BaseVue {
 
     /**
      * 重加载
-     * @param cb 
+     * @param cb
      */
     reload(cb = null) {
         this.setWithdrawsData();
@@ -63,7 +64,7 @@ export class WithdrawsList extends BaseVue {
 
     /**
      * 跳转到提现记录详情
-     * @param id 
+     * @param id
      */
     goWithdrawsDetail(id) {
         this.$router.push({ path: 'withdraws_detail', query: { id: id } })

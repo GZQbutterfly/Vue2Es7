@@ -1,8 +1,8 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import { Component} from 'vue-property-decorator';
+import  BaseVue  from 'base.vue';
 import './classify.scss';
 import classifyService from './classify.service';
-import { isNotLogin, toLogin } from '../../../commons/common.env';
+import { isNotLogin, toLogin } from 'common.env';
 import { NavScrollc } from "./navScroll/navScroll.component";
 import { locale } from 'core-js/library/web/timers';
 
@@ -14,23 +14,23 @@ import { locale } from 'core-js/library/web/timers';
 })
 export class CmsPurchaseClassify extends BaseVue {
     // 组件方法也可以直接声明为实例的方法
-    lists: any = [];
-    show: any = 1;
-    classfyList: any = [];
-    classfyId: any = [];
-    classfyGoodsList: any = [];
-    private _$service: any;
-    classifyAdImgPic: any = [];
-    config: any = {};
-    bb: any = [];
-    page: number = 1;
-    bannerShow: boolean = true;
-    headImg: any = '/static/images/pic-nologin.png';
-    shopkeeper: any = {};
+    lists = [];
+    show = 1;
+    classfyList = [];
+    classfyId = [];
+    classfyGoodsList = [];
+    _$service;
+    classifyAdImgPic = [];
+    config = {};
+    bb = [];
+    page = 1;
+    bannerShow = true;
+    headImg = '/static/images/pic-nologin.png';
+    shopkeeper = {};
     //private _getShopCarCount;
-    private _classfyList;
-    homeAd: any = [];
-    selfShopId: any;
+    _classfyList;
+    homeAd = [];
+    selfShopId;
     data() {
         return {
             // show: true
@@ -47,7 +47,7 @@ export class CmsPurchaseClassify extends BaseVue {
 
     activated() {
         document.title = "进货首页"
-        // keep-alive 时 会执行activated  
+        // keep-alive 时 会执行activated
         let _this = this;
         this.$nextTick(() => {
             _this._classfyList.then((res) => {
@@ -93,7 +93,7 @@ export class CmsPurchaseClassify extends BaseVue {
         }, 500)
 
     }
-    classifyId: any = 0;
+    classifyId = 0;
     getClassifyMsg(res) {
         let _this = this;
         let opt = {
@@ -273,11 +273,11 @@ export class CmsPurchaseClassify extends BaseVue {
             });
         })
     }
-    
+
     //跳转搜索页面
     goSearch() {
         let typeId = this.show ? '?classify=' + this.show : '';
-        this.$router.push({ path: "cmsPurchaseSearch", query: { origin: 'cmsPurchaseType' + typeId } });  
+        this.$router.push({ path: "cmsPurchaseSearch", query: { origin: 'cmsPurchaseType' + typeId } });
     }
 
     goLogin() {

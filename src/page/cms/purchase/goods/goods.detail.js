@@ -1,13 +1,17 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import './goods.detail.scss';
+import { Component} from 'vue-property-decorator';
+import  BaseVue  from 'base.vue';
+
+import { isNotLogin, toLogin, getLocalUserInfo } from "common.env";
 import { NavTop } from './navtop/navtop.component';
-import goodsService from './goods.service';
 import { NumberPicker } from './picker/num.picker';
-import { isNotLogin, toLogin, getLocalUserInfo } from "../../../commons/common.env";
-import { VideoBannerComponent } from '../../../components/videoBanner/video.banner.component';
-import { VueVideo } from "../../../components/video/video.component";
+import VideoBanner  from '../../../../commons/vue_plugins/components/video/video.banner.vue';
+import VueVideo  from '../../../../commons/vue_plugins/components/video/video.vue';
+
+
 import shopCarGoodsService from '../classify/getShopCarCount';
+
+import goodsService from './goods.service';
+import './goods.detail.scss';
 @Component({
     template: require('./goods.detail.html'),
     components: {
@@ -19,32 +23,32 @@ import shopCarGoodsService from '../classify/getShopCarCount';
 })
 
 export class CmsPurchaseGoodsDetail extends BaseVue {
-    goods: any = {};
-    show2Car: boolean = false;
-    showgoPay: boolean = false;
-    int_day: any = 0;
-    int_hour: any = 0;
-    int_second: any = 0;
-    int_minute: any = 0;
-    showTime: boolean = true;
-    timerID: any;
-    bannerImg: any = [];
-    hasBannerVideo: boolean = false;
-    coverVideoOptions: any = {};
-    isGradeShow: boolean = false;
-    myGrade: any = 1;
-    grade: any = [];
-    private _$service;
-    goodsPrice: number = 0;
-    moneyPrice: any = 0;
-    minExport:any = {
+    goods = {};
+    show2Car = false;
+    showgoPay = false;
+    int_day = 0;
+    int_hour = 0;
+    int_second = 0;
+    int_minute = 0;
+    showTime = true;
+    timerID;
+    bannerImg = [];
+    hasBannerVideo = false;
+    coverVideoOptions = {};
+    isGradeShow = false;
+    myGrade = 1;
+    grade = [];
+    _$service;
+    goodsPrice = 0;
+    moneyPrice = 0;
+    minExport = {
        flag:false,
        leastBuy:0,
-       buy:1       
+       buy:1
     }
-    playerOptions: any = {
+    playerOptions = {
     }
-    shopkeeper:any = {};
+    shopkeeper = {};
     created() {
         this.getGoodsMsg();
     }
@@ -59,7 +63,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
     }
 
     getGoodsMsg() {
-        document.title = "商品详情"; 
+        document.title = "商品详情";
         let _this = this;
         _this._$service = goodsService(_this.$store);
         this._$service.getLeastBuyMoney().then(v => {
@@ -94,7 +98,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
                 }
             })
         })
-       
+
         _this._$service.goodsInfo(_this.$route.query.goodsId)//获取商品信息
             .then(res => {
                 if (res.data.data.state != 1) {
@@ -135,7 +139,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
                     for (let i in _result) {
                         let indx = Number(i.substr(i.length - 1, 1));
                         // console.log(indx);
-                        let obj: any = {
+                        let obj= {
                             id: indx,
                             vip: i,
                             vipName: _result[i][1],
@@ -149,7 +153,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
                         }
                         arr.push(obj);
                     }
-                   
+
                     for (let i = 0; i < arr.length - 1; i++) {
                         for ( let j = 0; j < arr.length - 1 - i; j++) {
                             if (arr[j].id < arr[j + 1].id) {
@@ -220,7 +224,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
             }else{
                 let wdinfo = res.data;
                 self.fetchShopData()
-                .then((res:any)=>{
+                .then((res)=>{
                     //当前浏览的商品是自己的上级
                     if (wdinfo.infoId==res.infoId) {
                         return ;
@@ -249,7 +253,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
     changeShowIt() {
         this.show2Car = false;
         this.showgoPay = false;
-      
+
     }
     buyNow(goodsId) {
         if (this.goods.state == 0) {
@@ -281,7 +285,7 @@ export class CmsPurchaseGoodsDetail extends BaseVue {
 
     finish2Car(num) {
         this.goods.number = num;
-        let _this = this;     
+        let _this = this;
             let opt = {
                 goodsId: _this.goods.goodsId,
                 number: num

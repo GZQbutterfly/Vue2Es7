@@ -1,8 +1,8 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import { Component } from 'vue-property-decorator';
+import BaseVue  from 'base.vue';
 import orderDetailService from './stock.order.detail.service';
-import { getLocalUserInfo, toWEB } from '../../../../commons/common.env';
-import dialog from '../../../../components/popup/dialog';
+import { getLocalUserInfo, toWEB } from 'common.env';
+
 
 
 require('./stock.order.detail.scss');
@@ -11,26 +11,25 @@ require('./stock.order.detail.scss');
     template: require('./stock.order.detail.html')
 })
 
-
 export class StockOrderDetail extends BaseVue {
 
-    private _$service: any;
-    private orderId: any;
-    timerID: any;
-    orderTimer: any = {
+    _$service;
+    private orderId;
+    timerID;
+    orderTimer = {
         int_hour: 0,
         int_minute: 0,
         int_second: 0
     };
 
-    orderInfo: any = {};
+    orderInfo = {};
 
     //当前店铺折扣
     curShopBuyDisct = 100;
 
-    goodsInfo: any = {};
+    goodsInfo = {};
 
-    commi: any = {};
+    commi = {};
 
     mounted() {
         //订单编号

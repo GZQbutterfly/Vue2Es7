@@ -1,5 +1,4 @@
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import { Component,Vue} from 'vue-property-decorator';
 import './navtop.component.scss';
 
 
@@ -21,4 +20,3 @@ export class NavTop extends Vue {
     });
   }
 }
-

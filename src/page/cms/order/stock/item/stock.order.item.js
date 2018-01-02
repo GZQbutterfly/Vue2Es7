@@ -1,10 +1,10 @@
 
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
+
 import './stock.order.item.scss';
 import itemService from './stock.order.item.service';
-import { getLocalUserInfo, } from '../../../../commons/common.env';
-import dialog from '../../../../components/popup/dialog';
+import { getLocalUserInfo, } from 'common.env';
+
 
 
 
@@ -15,14 +15,14 @@ import dialog from '../../../../components/popup/dialog';
 
 export class StockOrderItem extends Vue {
 
-	private _$service: any;
+	_$service;
 
 	mounted() {
 		//注册服务
 		this._$service = itemService(this.$store);
 	}
 
-	expanded(expand): void {
+	expanded(expand) {
 		this.$props.expand = expand;
 	}
 
@@ -35,7 +35,7 @@ export class StockOrderItem extends Vue {
 	}
 
 	toOrderDetail(orderId) {
-		let query: any = {};
+		let query = {};
 		if (this.$props.order.orders[0].orderState == 1 || this.$props.order.orders[0].orderState == 3) {//待支付或者交易关闭
 			query.combinOrderNo = this.$props.order.orders[0].combinOrderNo;
 		} else {

@@ -1,13 +1,12 @@
-import axios from 'axios';
 
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
     //  api/q_api_goods_stock_order   api/order_out/q_wait_orders
     let querywaitorders = 'api/q_api_goods_stock_order';
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -38,7 +37,7 @@ export default (_store) => {
             //         //     "userId": 1,								//用户Id
             //         //     "shopId": null,							//店铺Id
             //         //     "goodsId": 3,								//商品ID
-            //         //     "orderNo": "25206461189065",				//订单号	
+            //         //     "orderNo": "25206461189065",				//订单号
             //         //     "combinOrderNo": "25206461189060",		//父订单号（支付单号，仅在待支付时有用），如果是查询待支付的把相同的父订单号订单列在一起支付
             //         //     "number": 50,								//数量
             //         //     "moneyPrice": 2,							//单价
@@ -64,7 +63,7 @@ export default (_store) => {
             //         //     "userId": 1,								//用户Id
             //         //     "shopId": null,							//店铺Id
             //         //     "goodsId": 3,								//商品ID
-            //         //     "orderNo": "25206461189065",				//订单号	
+            //         //     "orderNo": "25206461189065",				//订单号
             //         //     "combinOrderNo": "25206461189060",		//父订单号（支付单号，仅在待支付时有用），如果是查询待支付的把相同的父订单号订单列在一起支付
             //         //     "number": 10,								//数量
             //         //     "moneyPrice": 2,							//单价

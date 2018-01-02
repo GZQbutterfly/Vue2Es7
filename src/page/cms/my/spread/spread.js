@@ -1,7 +1,7 @@
 // 我要推广
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import { getLocalUserInfo, pageNotAccess, timeout } from '../../../commons/common.env';
+import { BaseVue } from 'base.vue';
+import { getLocalUserInfo, pageNotAccess, timeout } from 'common.env';
 
 import service from './spread.service';
 
@@ -14,11 +14,11 @@ export class MySpread extends BaseVue {
     headimgurl = '';
     username = ''
     wdName = '';
-    wdVipGrade: any = '';
+    wdVipGrade = '';
 
     code = '??????';
 
-    private _$service;
+    _$service;
 
     mounted() {
         this._$service = service(this.$store);
@@ -34,7 +34,7 @@ export class MySpread extends BaseVue {
         this.username = _user.nickname || _user.name || _user.loginName;
     }
     queryCode() {
-        let _self:any = this;
+        let _self = this;
         this._$service.queryCurrentLevel().then((result) => {
             let _wdVipInfo = result.wdVipInfo;
             _wdVipInfo && (_self.wdVipGrade = _wdVipInfo.wdVipGrade);

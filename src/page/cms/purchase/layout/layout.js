@@ -1,5 +1,5 @@
-import Component from 'vue-class-component';
-import Vue from 'vue';
+import { Component, Vue} from 'vue-property-decorator';
+
 import layoutService from './layout.service';
 import shopCarGoodsService from '../classify/getShopCarCount';
 import { debounce } from 'lodash';
@@ -10,8 +10,8 @@ import './layout.scss';
 })
 export class CmsLayout extends Vue {
     list = layoutService.list;
-    isCreatedMenu: boolean = true;
-    activeName: string;
+    isCreatedMenu = true;
+    activeName;
     data() {
         return {
             activeName: this.$route.name
@@ -33,7 +33,7 @@ export class CmsLayout extends Vue {
             this.refreshServer(this);
 
             //禁止ios/微信的默认可下拉
-            (<any>this).$refs.cmsWarpRef.addEventListener('touchmove', function (event: any) {
+            this.$refs.cmsWarpRef.addEventListener('touchmove', function (event) {
                 event.preventDefault();
             });
         });

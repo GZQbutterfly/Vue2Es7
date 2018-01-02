@@ -1,5 +1,4 @@
 // 菜单数据
-import axios from 'axios';
 export default {
     list: [
         {

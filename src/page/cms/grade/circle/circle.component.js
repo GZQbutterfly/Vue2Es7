@@ -1,5 +1,5 @@
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
-import { timeout } from '../../../commons/common.env';
+import timeout  from 'common.env';
 
 import './circle.component.scss';
 
@@ -16,7 +16,7 @@ import './circle.component.scss';
             if (this.type === 'line') {
                 return 'M 0,{R} L 100,{R}'.replace(/\{R\}/g, this.trailWidth / 2 + '');
             } else {
-                const r: any = 50 - (this.strokeWidth ? this.strokeWidth : this.trailWidth) / 2;
+                const r = 50 - (this.strokeWidth ? this.strokeWidth : this.trailWidth) / 2;
                 return 'M 50,50 m 0,-{R} a {R},{R} 0 1 1 0,{2R} a {R},{R} 0 1 1 0,-{2R}'.replace(/\{R\}/g, r).replace(/\{2R\}/g, 2 * r + '');
             }
         }
@@ -62,7 +62,7 @@ export class CircleComponent extends Vue {
     }
 
     mounted() {
-        let _self: any = this;
+        let _self = this;
         const length = _self.length = _self.$refs.trailPath.getTotalLength();
         _self.stroke.dashoffset = length;
         _self.stroke.dasharray = length + ',' + length;
@@ -82,7 +82,7 @@ export class CircleComponent extends Vue {
 
 
     scrollHandler() {
-        let _self: any = this;
+        let _self = this;
         //if (checkInview(_self.scrollview, _self.$el)) {
         //}
         timeout(() => {
@@ -91,20 +91,20 @@ export class CircleComponent extends Vue {
     }
 
     bindEvent() {
-        let _self: any = this;
+        let _self = this;
         _self.scrollview.addEventListener('scroll', this.scrollHandler);
         window.addEventListener('resize', this.scrollHandler);
     }
 
     unbindEvent() {
-        let _self: any = this;
+        let _self = this;
         _self.scrollview.removeEventListener('scroll', this.scrollHandler);
         window.removeEventListener('resize', this.scrollHandler);
     }
 
     @Watch('progress')
     setProgress(val) {
-        let _self: any = this;
+        let _self = this;
         _self.stroke.dashoffset = _self.length - val * _self.length;
     }
 

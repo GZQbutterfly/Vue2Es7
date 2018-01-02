@@ -1,12 +1,12 @@
-import axios from 'axios';
+
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     let goodslisturl = 'api/q_keyword';
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -30,7 +30,7 @@ export default (_store) => {
             }
             return q(goodslisturl, data)
         },
-        // api/q_api_goods_stock 
+        // api/q_api_goods_stock
         queryStockList(keyword, page, limit) {
             let data = {
                 keyword: keyword,

@@ -1,5 +1,5 @@
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
     let goodesList = 'api/wholecart/q_whole_cart_goodses';
@@ -23,7 +23,7 @@ export default (_store) => {
                 limit: 10
             }).then(res => {
                 if (res.data.data && res.data.data.length != 0) {
-                    res.data.data.forEach(lists => {                    
+                    res.data.data.forEach(lists => {
                         if (lists.isValid === 1) {
                             validLists.push(lists);
                             }

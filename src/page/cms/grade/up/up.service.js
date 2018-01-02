@@ -1,11 +1,11 @@
-import { isApp, isWeiXin } from '../../../commons/common.env';
+import { isApp, isWeiXin } from 'common.env';
 
 export default (store) => {
-    let _state: any = store.state;
+    let _state = store.state;
     let _http = _state.$http;
 
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
@@ -18,7 +18,7 @@ export default (store) => {
         },
         queryShopSteps() {
             return new Promise((resolve, reject) => {
-                let datas: any = [
+                let datas = [
                     {
                         name: '缴纳保证金',
                         success: true,
@@ -64,7 +64,7 @@ export default (store) => {
             ];
             let datas = null;
             if (isWeiXin()) {
-                let wxData: any = _datas[1];
+                let wxData = _datas[1];
                 wxData.checked = true;
                 datas = [wxData];
             } else if (isApp()) {

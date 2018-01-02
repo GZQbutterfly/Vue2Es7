@@ -1,6 +1,6 @@
 // 立刻升级
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import  BaseVue  from 'base.vue';
 import service from './up.service';
 
 
@@ -13,12 +13,12 @@ export class GradeUp extends BaseVue {
     // 是否已缴纳保证金
     steps = [];
     stepIndex = -1;
-    currentStep: any = {};
+    currentStep = {};
     upName = '';
     // 支付选择面板
     payList = [];
     payActive = '';
-    private _$service;
+    _$service;
     mounted() {
         // 注册服务
         this._$service = service(this.$store);
@@ -41,7 +41,7 @@ export class GradeUp extends BaseVue {
             this.steps = datas;
             // 判断当前节点
             let _stepIndex = -1;
-            let _currentStep: any = {};
+            let _currentStep = {};
             for (let i = 0, len = datas.length; i < len; i++) {
                 let step = datas[i];
                 if (step.success) {
@@ -99,7 +99,7 @@ export class GradeUp extends BaseVue {
         this.currentStep.success = true;
     }
     toPay() {
-        let _self: any = this;
+        let _self = this;
         this._$service.toPay({
             'url': '/cms/#/gradeUp?name=' + this.upName
         }, this.payActive).then((res)=>{
@@ -122,7 +122,7 @@ export class GradeUp extends BaseVue {
      */
     toPurchase() {
         // 跳转进货页面
-        this.$router.push('cmsPurchase');
+        this.$router.push('cms_purchase');
     }
     toHome(){
         this.$router.push('/');

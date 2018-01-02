@@ -1,7 +1,7 @@
 // 实名认证
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import { getLocalUserInfo } from '../../../commons/common.env';
+import BaseVue  from 'base.vue';
+import { getLocalUserInfo } from 'common.env';
 
 import './real.name.scss';
 @Component({
@@ -13,6 +13,6 @@ export class RealName extends BaseVue {
     }
     toForm() {
         // 填写实名信息
-        this.$router.push('realNameForm');
+        this.$router.push('real_name_form');
     }
 }

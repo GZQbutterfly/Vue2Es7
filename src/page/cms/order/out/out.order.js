@@ -1,6 +1,6 @@
 // 出貨訂單
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import Component from 'vue-class-component';
+import BaseVue  from 'base.vue';
+import { Component } from 'vue-property-decorator';
 import { MultiTab } from '../../../components/multitab/multitab.component';
 import shipOrderListService from './out.order.service';
 import { OutOrderItem } from './item/out.order.item';
@@ -16,17 +16,17 @@ import { OutOrderItem } from './item/out.order.item';
 
 export class OutOrder extends BaseVue {
 
-    private _$service: any;
+    _$service;
 
-    tabIndex: any = 0;
+    tabIndex = 0;
 
-    subTableIndex: any = 0;
+    subTableIndex = 0;
 
-    dataShipmentList: any = [[], [], [], []];
+    dataShipmentList = [[], [], [], []];
 
-    noDataList: any = [false, false, false, false];
+    noDataList = [false, false, false, false];
 
-    pageList: any = [0, 0, 0, 0];
+    pageList = [0, 0, 0, 0];
 
     data() {
         if (Number(this.$route.query.listValue) && Number(this.$route.query.listValue) >= 2) {

@@ -1,9 +1,7 @@
-import Component from 'vue-class-component';
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
+import { Component} from 'vue-property-decorator';
+import BaseVue  from 'base.vue';
 import orderDetailService from './order.detail.service';
-import dialog from '../../../../components/popup/dialog';
-import { toLogin, getZoneData ,getLocalUserInfo} from '../../../../commons/common.env';
-import { Number } from 'core-js/library/web/timers';
+import { toLogin, getZoneData ,getLocalUserInfo} from 'common.env';
 
 
 // import { hptPayDialog } from '../../../../commons/pay/hptDialog';
@@ -14,27 +12,27 @@ require('./order.detail.scss');
 })
 
 export class CmsPurchaseOrderDetail extends BaseVue {
-    orderInfo: any = {};
-    orderStateName: string = '';
-    orderLeaveMsg: any = {};
-    orderId: any;
-    combinOrderNo: any;
-    private _$service: any;
+    orderInfo = {};
+    orderStateName = '';
+    orderLeaveMsg = {};
+    orderId;
+    combinOrderNo;
+     _$service;
     //设置和格式化后的事件字符串
-    formatDate: string = '';
-    leftTime: number;
-    timer: any;
+    formatDate = '';
+    leftTime;
+    timer;
     //底部删除并退款
-    showDelWithRefund: boolean = false;
+    showDelWithRefund = false;
     //底部toast
-    showToast: boolean = false;
+    showToast = false;
     //你每个商品的退款按钮
     // showRefund: boolean = false;
     //商品显示物流
-    showOrderNumber: boolean = false;
+    showOrderNumber = false;
     //底部显示实付还是需付
-    showTypeAndRefund: boolean = false;
-    totalPrice :any = 0;
+    showTypeAndRefund = false;
+    totalPrice  = 0;
     mounted() {
         document.title = "订单详情";
         //订单编号
@@ -74,7 +72,7 @@ export class CmsPurchaseOrderDetail extends BaseVue {
 
     msg(res) {
         let _self = this;
-        let obj: any = {
+        let obj = {
         };
         if (!res.data.orderWhole || !res.data.orderGoods) {
             return;

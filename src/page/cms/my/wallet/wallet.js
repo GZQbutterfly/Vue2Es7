@@ -1,8 +1,8 @@
 // 我的钱包
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
-import dialog from '../../../components/popup/dialog';
-import { isNotLogin, isAndroid, isiOS, pageNotAccess } from '../../../commons/common.env';
+import  BaseVue  from 'base.vue';
+
+import { isNotLogin, isAndroid, isiOS, pageNotAccess } from 'common.env';
 
 import walletService from './wallet.service';
 import './wallet.scss';
@@ -12,26 +12,26 @@ import './wallet.scss';
 })
 
 export class MyWallet extends BaseVue {
-    showRule: boolean = false;
-    data_money: any = '';
-    data_type: any = '1';
-    data_name: any = '';
+    showRule = false;
+    data_money = '';
+    data_type = '1';
+    data_name = '';
 
-    vipName: string = '';
+    vipName = '';
 
-    withdrawInfo: any = {};
+    withdrawInfo = {};
 
-    shopData: any = {
+    shopData = {
         vip: '0',
     };
 
 
-    userLogin: boolean = false;
+    userLogin = false;
     //用户头像
-    user_img: any = '/static/images/pic-nologin.png';
-    userMoney: any = '0';
-    userInfo: any = {};
-    private _$service: any;
+    user_img = '/static/images/pic-nologin.png';
+    userMoney = '0';
+    userInfo = {};
+    _$service;
 
     mounted() {
         document.title = "我的钱包";
@@ -50,7 +50,7 @@ export class MyWallet extends BaseVue {
     }
 
     changeShowRule() {
-        let _self: any = this;
+        let _self = this;
         let area = _self.$refs.walletTextArea;
         let areaIn = _self.$refs.walletTextAreaIn;
         area.style.height = ((_self.showRule = !_self.showRule) ? areaIn.getBoundingClientRect().height : 0) + 'px';
@@ -72,7 +72,7 @@ export class MyWallet extends BaseVue {
      * 获取提现cms设置
      */
     queryWithdrawInfo() {
-        let _self: any = this;
+        let _self = this;
         _self._$service.queryWithdrawInfo().then((res) => {
             _self.withdrawInfo = res.data;
             _self.withdrawInfo.withDrawInstruction = _self.withdrawInfo.withDrawInstruction.split(/\s{2}/g);
@@ -105,7 +105,7 @@ export class MyWallet extends BaseVue {
      */
     withdraws() {
         // pageNotAccess();
-        let _self: any = this;
+        let _self = this;
         this._$service.queryRealName().then((res) => {
             console.log('用户实名认证信息', res.data)
             if (res.data.state != 4) {
@@ -213,7 +213,7 @@ export class MyWallet extends BaseVue {
 
     // 去 实名认证
     toAuthPage(res) {
-        let _self: any = this;
+        let _self = this;
         if (res.state == 0 || res.state == 3) {
             this.$router.push('realName');
         } else {

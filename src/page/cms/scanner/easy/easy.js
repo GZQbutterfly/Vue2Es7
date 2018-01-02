@@ -1,15 +1,14 @@
 //轻松开店(用户扫描当前页面中的二维码，跳转开店页面信息)
 import { Component } from 'vue-property-decorator';
-import { BaseVue } from '../../../commons/base-vue/base.vue';
+import BaseVue  from 'base.vue';
 
-import { getLocalUserInfo, timeout, isWeiXin } from '../../../commons/common.env';
+import { getLocalUserInfo, timeout, isWeiXin } from 'common.env';
 
-import { QRCode } from '../../../commons/assets/qrcode';
+import { QRCode } from '../../../../commons/assets/qrcode/qrcode';
 
-const wx = require('weixin-js-sdk');
+import wx from 'weixin-js-sdk';
+import clipboard from 'clipboard-polyfill';
 
-
-const clipboard = require('clipboard-polyfill');
 
 import './easy.scss';
 @Component({
@@ -54,7 +53,7 @@ export class EasyScanner extends BaseVue {
     }
     // 获取二维码
     query2Code() {
-        // 
+        //
         if (this.urlParams.type === 'spread') {
             document.title = '开店推广';
             this.title = '加入我们，轻松开店';
@@ -76,7 +75,7 @@ export class EasyScanner extends BaseVue {
 
 
         timeout(() => {
-            let _codeRefDom: any = this.$refs.codeRef;
+            let _codeRefDom = this.$refs.codeRef;
             let width = _codeRefDom.clientHeight;
             let height = _codeRefDom.clientWidth;
             let qrcode = new QRCode(_codeRefDom, {

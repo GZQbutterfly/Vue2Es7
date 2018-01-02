@@ -1,8 +1,8 @@
 
-import { isNotLogin } from '../../../commons/common.env';
+import { isNotLogin } from 'common.env';
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
 
@@ -11,7 +11,7 @@ export default (_store) => {
     //获取用户订单列表数量
     let ordernumburl = 'api/order_whole/q_order_count';
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,

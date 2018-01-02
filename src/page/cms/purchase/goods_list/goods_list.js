@@ -1,14 +1,13 @@
-import Component from 'vue-class-component';
-import Vue from 'vue'
-import './goodsList.scss';
+import { Component, Vue} from 'vue-property-decorator';
+import './goods_list.scss';
 
 @Component({
-    template: require('./goodsList.html'),
+    template: require('./goods_list.html'),
     props: ["dataList"]
 })
 
 export class GoodsList extends Vue {
-    goodsList: any = { 'data': [] };
+    goodsList = { 'data': [] };
 
     mounted() {
         this.goodsList = this.$props.dataList;

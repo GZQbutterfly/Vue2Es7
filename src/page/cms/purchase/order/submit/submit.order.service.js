@@ -1,28 +1,12 @@
 // ==>
 import { merge } from 'lodash';
-/**
- * 1, 商品直接购买（单sku）
- *    01),积分兑换，直接扣除积分
- * 
- * 
- *    02),现金卷兑换，直接扣除现金卷
- * 
- *    03),rmb购买，提交to支付面板，to支付结果
- * 
- * 2，购物车结算（多sku）
- * 
- *    01),rmb购买，提交to支付面板，to支付结果
- * 
- *    02),rmb+现金卷购买，提交to支付面板，to支付结果
- * 
- * 
- */
+
 export default (_store) => {
     let _state = _store.state;
     let _http = _state.$http;
     let nowifi = null;
     //;
-    function q(url, data?) {
+    function q(url, data) {
         console.log('提交请求data', data)
         return _http({
             data: data,
@@ -41,15 +25,15 @@ export default (_store) => {
         },
         /**
          * 查询商品信息
-         * @param data 
+         * @param data
          */
         queryOrder(data) {
             // gsNo : sp00000014								//商品编号
             // number : 3										//非必填，填了之后moneyPrice 为分销折扣价
             return q('api/goods/q_goods', data);
         },
-        queryDefaultAddress(id?) {
-            let param: any = {};
+        queryDefaultAddress(id) {
+            let param = {};
             if (id) {
                 param.id = id;
             } else {
@@ -65,7 +49,7 @@ export default (_store) => {
         },
         /**
          * 提交订单
-         * @param data 
+         * @param data
          */
         submitOrder(data) {
             let _wxops = _state.wxops;
@@ -73,7 +57,7 @@ export default (_store) => {
         },
         /**
          * 套餐提交订单
-         * @param data 
+         * @param data
          */
         submitPackageOrder(data) {
             let _wxops = _state.wxops;

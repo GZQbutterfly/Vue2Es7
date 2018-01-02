@@ -1,5 +1,5 @@
-import { BaseVue } from '../../../../commons/base-vue/base.vue';
-import Component from 'vue-class-component';
+import { BaseVue } from 'base.vue';
+import { Component } from 'vue-property-decorator';
 import './team.list.scss';
 
 import service from './team.list.service';
@@ -9,16 +9,16 @@ import service from './team.list.service';
 })
 
 export class TeamList extends BaseVue {
-    grade:any = 0;
+    grade = 0;
 
-    dataList:any = [];
-    queryPage:number = 0;
-    queryLimit:number = 10;
-    queryFlag:boolean = true;
-    private _$service;
+    dataList = [];
+    queryPage = 0;
+    queryLimit = 10;
+    queryFlag = true;
+    _$service;
 
     mounted() {
-        let _self:any = this;
+        let _self = this;
         _self.grade = this.$route.query.grade;
         // 注册服务
         this._$service = service(this.$store);
@@ -29,7 +29,7 @@ export class TeamList extends BaseVue {
     }
 
     queryTeamList(cb = null){
-        let _self:any = this;
+        let _self = this;
         _self._$service.queryTeamList(_self.grade).then((res) => {
             _self.dataList = res.data;
             cb && cb();
@@ -77,7 +77,7 @@ export class TeamList extends BaseVue {
     //         cb && cb();
     //     });
     // }
-    
+
     // //刷新
     // refresh(done) {
     //     let _self = this;

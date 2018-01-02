@@ -1,10 +1,10 @@
-import { getLocalUserInfo, baseURL, formHttp } from '../../../../commons/common.env';
+import { getLocalUserInfo, baseURL, formHttp } from 'common.env';
 
 export default (_store) => {
-    let _state: any = _store.state;
+    let _state = _store.state;
     let _http = _state.$http;
 
-    function q(url, data?) {
+    function q(url, data) {
         return _http({
             data: data,
             url: url,
